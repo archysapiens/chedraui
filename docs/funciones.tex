@@ -1,0 +1,310 @@
+\section{Funciones de la Herramienta} \label{funcions}
+
+La herramienta hace los cálculos utilizando las siguientes funciones:
+\begin{enumerate}
+	\item \textbf{leeCatalogos}
+	\item \textbf{calcCompetencia}
+	\item \textbf{calcDatos}
+	\item \textbf{calcPrecios}
+	\item \textbf{calcImpactoPrecios}
+\end{enumerate}
+
+Adicionalmente, se incluyen funciones auxiliares para el proceso de datos voluminosos. 
+Estas funciones no son utilizadas por las funciones principales de la herramienta y
+su inclusión busca facilitar el trabajo del personal de Chedraui: 
+\begin{enumerate}
+	\item \textbf{sumaVentas}
+	\item \textbf{listaUPCsCompetencia}
+\end{enumerate}
+
+Cada función depende de ciertas variables que el usuario debe ingresar, de acuerdo a lo que desee procesar.
+En general, las funciones deben de conocer el directorio raíz de los datos, 
+así como el año y semana que se desea procesar.
+
+
+
+
+
+\subsection{Funciones Principales}
+
+
+
+\subsubsection{leeCatalogos}
+
+Declaración de la función: 
+\begin{lstlisting}[breaklines, language=Scala]
+def leeCatalogos(rootDir: String, 
+	matriz: String = "cat_matriz.csv"): 
+	Map[String,DataFrame]
+\end{lstlisting}
+
+Ejemplo de uso: 
+\begin{lstlisting}[breaklines]
+val cats  = leeCatalogos("/home/black/Documents/chedraui", matriz = "matriz_noviembre.csv")
+\end{lstlisting}
+
+
+Como su nombre lo indica, esta función lee los catálogos y limpia la información que contienen, 
+regresa un Map de Strings (etiquetas) a DataFrames (tablas).
+El resultado de este función se utiliza en el resto de las funciones de la herramienta.
+
+A continuación se describen los argumentos de esta función:
+\begin{itemize}
+	\item rootDir - Ruta donde se localizan los archivos a procesar. Cadena de caracteres.
+	\item matriz - Nombre de archivo de la matriz de competencia, toma el valor ``cat\_matriz.csv" por defecto. 
+		Cadena de caracteres, opcional.
+\end{itemize}
+
+
+
+\subsubsection{calcCompetencia}
+
+Declaración de la función: 
+\begin{lstlisting}[breaklines, language=Scala]
+def calcCompetencia(myYear: Int, 
+	myWeek: Int, 
+	cats: Map[String, DataFrame], 
+	rootDir: String, 
+	uri: String = ""): 
+	Unit
+\end{lstlisting}
+
+Ejemplo de uso: 
+\begin{lstlisting}[breaklines]
+calcCompetencia(2017, 51, cats, "/home/black/Documents/chedraui")
+\end{lstlisting}
+
+Esta función genera tablas auxiliares con precios de la competencia
+para el uso interno de la herramienta. 
+Esta función genera archivos que comienzan con ``comp'' y 
+contiene precios y medidas estadísticas de estos precios.
+
+A continuación se describen los argumentos de esta función:
+\begin{itemize}
+	\item myYear - Año que se desea procesar. Entero.
+	\item myWeek - Semana que se desea procesar. Entero.
+	\item cats - Colección de catálogos generado por leeCatalogos. Mapa de String a DataFrame. 
+	\item rootDir - Ruta donde se localizan los archivos a procesar. Cadena de caracteres.
+	\item uri - Dirección única de recurso en caso de utilizar un sistema de archivos HDFS, 
+		solamente necesario al usar un cluster con HDFS, toma el valor vacío por defecto. 
+		Cadena de caracteres, opcional.
+\end{itemize}
+
+
+
+\subsubsection{calcDatos}
+
+Declaración de la función: 
+\begin{lstlisting}[breaklines, language=Scala]
+def calcDatos(myYear: Int, 
+	myWeek: Int, 
+	cats: Map[String, DataFrame], 
+	rootDir: String, 
+	uri: String = "",
+	inven: String = ""): 
+	Unit
+\end{lstlisting}
+
+Ejemplo de uso: 
+\begin{lstlisting}[breaklines]
+calcDatos(2017, 51, cats, "/home/black/Documents/chedraui", inven = "Inven_02ene2017.csv")
+\end{lstlisting}
+
+Esta función genera la tabla maestra de datos que la herramienta utiliza para sugerencias de precios.
+La lógica interna de esta función esta fuera del alcance de esta descripción, 
+a grandes rasgos busca precios de la competencia, 
+calcula precios de regulación central, precios promedio y les añade impuestos. 
+Adicionalmente, calcula cantidades y banderas auxiliares para el uso interno de la herramienta.
+Esta función genera archivos que comienzan con ``datos'' y generalmente son los archivos más 
+voluminosos generados por la herramienta y por ello se recomienda reiniciar la consola
+después de su uso. 
+
+A continuación se describen los argumentos de esta función:
+\begin{itemize}
+	\item myYear - Año que se desea procesar. Entero.
+	\item myWeek - Semana que se desea procesar. Entero.
+	\item cats - Colección de catálogos generado por leeCatalogos. Mapa de String a DataFrame. 
+	\item rootDir - Ruta donde se localizan los archivos a procesar. Cadena de caracteres.
+	\item uri - Dirección única de recurso en caso de utilizar un sistema de archivos HDFS, 
+		solamente necesario al usar un cluster con HDFS, toma el valor vacío por defecto. 
+		Cadena de caracteres, opcional.
+	\item inven - Nombre del archivo de inventario en la carpeta de inventarios que se desea usar
+		como fuente de SKUs y Tiendas, toma el valor vacío por defecto.
+		Cadena de caracteres, opcional.
+\end{itemize}
+
+
+
+\subsubsection{calcPrecios}
+
+Declaración de la función: 
+\begin{lstlisting}[breaklines, language=Scala]
+def calcPrecios(myYear: Int, 
+	myWeek: Int, 
+	cats: Map[String, DataFrame], 
+	rootDir: String, 
+	uri: String = ""): 
+	Unit
+\end{lstlisting}
+
+Ejemplo de uso:
+\begin{lstlisting}[breaklines]
+calcPrecios(2017, 51, cats, "/home/black/Documents/chedraui")
+\end{lstlisting}
+
+Esta función genera la tabla de precios sugeridos. 
+La lógica interna de esta función esta fuera del alcance de esta descripción, 
+a grandes rasgos elimina precios marcados como remates o promocionales, 
+aplica lógica de igualación de precios de grupos, 
+aplica lógica de eliminación de excepciones y 
+redondea precios de acuerdo a las especificaciones de Chedraui. 
+Esta función genera archivos que comienzan con ``precios'' y contienen las sugerencias de precios 
+antes de su cruce con inventario.
+
+A continuación se describen los argumentos de esta función:
+\begin{itemize}
+	\item myYear - Año que se desea procesar. Entero.
+	\item myWeek - Semana que se desea procesar. Entero.
+	\item cats - Colección de catálogos generado por leeCatalogos. Mapa de String a DataFrame. 
+	\item rootDir - Ruta donde se localizan los archivos a procesar. Cadena de caracteres.
+	\item uri - Dirección única de recurso en caso de utilizar un sistema de archivos HDFS, 
+		solamente necesario al usar un cluster con HDFS, toma el valor vacío por defecto. 
+		Cadena de caracteres, opcional.
+\end{itemize}
+
+
+
+\subsubsection{calcImpactoPrecios}
+
+Declaración de la función: 
+\begin{lstlisting}[breaklines, language=Scala]
+def calcImpactoPrecios(myYear: Int, 
+	myWeek: Int, 
+	cats: Map[String, DataFrame], 
+	inven: String, 
+	rootDir: String, 
+	uri: String = "",
+	ventas: String = ""): 
+	Unit
+\end{lstlisting}
+
+Ejemplo de uso: 
+\begin{lstlisting}[breaklines]
+calcDatos(2017, 51, cats, "Inven_02ene2017.csv", "/home/black/Documents/chedraui", ventas = "ventas201801.csv")
+\end{lstlisting}
+
+Esta función genera la tabla de impactos de cambio de precio. 
+La lógica interna de esta función esta fuera del alcance de esta descripción, 
+a grandes rasgos utiliza los resultados de calcPrecios para sugerir precios
+dado un inventario y un archivo de ventas (este último es opcional). 
+Adicionalmente, genera reportes útiles en el diagnóstico de cálculos. 
+Esta función genera archivos que comienzan con ``impacto'' y se recomienda 
+utilizar estos archivos para sugerir precios.
+
+A continuación se describen los argumentos de esta función:
+\begin{itemize}
+	\item myYear - Año que se desea procesar. Entero.
+	\item myWeek - Semana que se desea procesar. Entero.
+	\item cats - Colección de catálogos generado por leeCatalogos. Mapa de String a DataFrame. 
+	\item inven - Nombre del archivo de inventario en la carpeta de inventarios que se desea usar
+		como fuente de SKUs y Tiendas, toma el valor vacío por defecto.
+		Cadena de caracteres.
+	\item rootDir - Ruta donde se localizan los archivos a procesar. Cadena de caracteres.
+	\item uri - Dirección única de recurso en caso de utilizar un sistema de archivos HDFS, 
+		solamente necesario al usar un cluster con HDFS, toma el valor vacío por defecto. 
+		Cadena de caracteres, opcional.
+	\item ventas - En caso de empezar con ``ventas", es el nombre del archivo 
+		de ventas en la carpeta de ventas que se desea usar
+		como fuente de SKUs y Tiendas.
+		En caso de comenzar con ``sumaVentas", es el nombre del archivo 
+		de suma de ventas generado por sumaVentas en la carpeta de resultados.
+		En caso de ser vacío, la herramienta tomará el archivo de ventas correspondiente 
+		a la semana y año con la que se llamó la función.
+		Vacío por defecto.
+		Cadena de caracteres, opcional.
+\end{itemize}
+
+
+
+
+
+\subsection{Funciones Auxiliares}
+
+
+
+\subsubsection{sumaVentas}
+
+Declaración de la función: 
+\begin{lstlisting}[breaklines, language=Scala]
+def sumaVentas(myYear: Int, 
+	myWeek: Int, 
+	weeks: Int, 
+	cats: Map[String, DataFrame], 
+	rootDir: String, 
+	uri: String = ""): 
+	Unit
+\end{lstlisting}
+
+Ejemplo de uso:
+\begin{lstlisting}[breaklines]
+sumaVentas(2017, 51, 11, cats, "/home/black/Documents/chedraui")
+\end{lstlisting}
+
+Esta función suma todas las semanas de ventas desde el año y semana especificadas
+hasta un número de semanas especificado hacia atrás en el tiempo. 
+Por ejemplo, con myYear=2017, myWeek=50 y weeks=12 
+se suman las ventas desde 201738 hasta 201750. 
+Esta función genera archivos que comienzan con ``sumaVentas''
+y contienen las ventas totales de las semanas especificadas.
+
+A continuación se describen los argumentos de esta función:
+\begin{itemize}
+	\item myYear - Año que se desea procesar. Entero.
+	\item myWeek - Semana que se desea procesar. Entero.
+	\item weeks - Número de semanas a considerar. Entero.
+	\item cats - Colección de catálogos generado por leeCatalogos. Mapa de String a DataFrame. 
+	\item rootDir - Ruta donde se localizan los archivos a procesar. Cadena de caracteres.
+	\item uri - Dirección única de recurso en caso de utilizar un sistema de archivos HDFS, 
+		solamente necesario al usar un cluster con HDFS, toma el valor vacío por defecto. 
+		Cadena de caracteres, opcional.
+\end{itemize}
+
+
+
+\subsubsection{listaUPCsCompetencia}
+
+Declaración de la función: 
+\begin{lstlisting}[breaklines, language=Scala]
+def listaUPCsCompetencia(myYear: Int, 
+	myWeek: Int, 
+	weeks: Int, 
+	cats: Map[String, DataFrame], 
+	rootDir: String, 
+	uri: String = ""): 
+	Unit
+\end{lstlisting}
+
+Ejemplo de uso:
+\begin{lstlisting}[breaklines]
+listaUPCsCompetencia(2017, 51, 11, cats, "/home/black/Documents/chedraui")
+\end{lstlisting}
+
+Esta función lista los UPCs presentes en las tablas de precios de la competencia 
+desde el año y semana especificadas
+hasta un número de semanas especificado hacia atrás en el tiempo. 
+Por ejemplo, con myYear=2017, myWeek=50 y weeks=12 
+se listan los UPCs desde 201738 hasta 201750. 
+Esta función genera archivos que comienzan con ``listaUPC''
+y contienen los UPCs presentes en las semanas especificadas.
+
+A continuación se describen los argumentos de esta función:
+\begin{itemize}
+	\item myYear - Año que se desea procesar. Entero.
+	\item myWeek - Semana que se desea procesar. Entero.
+	\item weeks - Número de semanas a considerar. Entero.
+	\item cats - Colección de catálogos generado por leeCatalogos. Mapa de String a DataFrame. 
+	\item rootDir - Ruta donde se localizan los archivos a procesar. Cadena de caracteres.
+	\item uri - Dirección única de recurso en caso de utilizar un sistema de archivos HDFS, 
+		solamente necesario al usar un cluster con HDFS, toma el valor vacío por defecto. 
+		Cadena de caracteres, opcional.
+\end{itemize}

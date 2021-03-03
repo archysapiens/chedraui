@@ -1,0 +1,150 @@
+\section{Procesos} \label{process}
+
+\subsection{Estructura de Archivos y Carpetas para la Herramienta}
+
+La herramienta tiene como entradas los catálogos, 
+así como los datos de ventas, inventarios y precios de competencia.
+Estos datos deben de estar bajo cualquier carpeta del sistema, 
+la herramienta solo debe conocer la ubicación de la carpeta
+durante su funcionamiento.
+
+Con el fin de ser concretos, supondremos que los archivos
+están guardados en la carpeta /home/black/Documents/chedraui.
+Dentro de esta carpeta se deberán colocar todos los catálogos,
+y se deberán crear las carpetas inventarios/, ventas/ y preciosCompetencia/. 
+Dentro de las últimas se deben colocar 
+los archivos de inventarios, ventas y precios de competencia respectivamente.
+Adicionalmente, la herramienta deposita sus resultados dentro de la carpeta llamada resultados/, 
+se recomienda que esta carpeta sea creada antes de correr cualquier función de la herramienta.
+
+Una carpeta con todas las entradas necesarias para la herramienta
+tendrán como ejemplo los siguientes archivos:
+
+\begin{Verbatim}[tabsize=4]
+/home/black/Documents/chedraui/
+	cat_skus.csv
+	cat_excepciones.csv 
+	... (todos los archivos de catalogos) 
+	cat_matriz.csv
+	inventarios/
+		Inven_15Ene17.csv
+		Inven_14Feb17.csv
+		... (todos los archivos de inventarios)
+		Inven_22Dic17.csv
+	ventas/ 
+		ventas201702.csv
+		ventas201703.csv
+		... (todos los archivos de ventas)
+		ventas201751.csv
+	preciosCompetencia/
+		nielsen201702.csv
+		nielsen201703.csv
+		otroproveedor201703.csv
+		... (todos los archivos de precios)
+		nielsen201750.csv
+	resultados/
+		... (la herramienta deposita resultados)
+\end{Verbatim}
+
+
+
+\subsection{Sugerencias de Precios}
+
+Una vez que los datos de entrada y los catálogos están colocados en una carpeta con la estructura especificada,
+la herramienta puede hacer su trabajo. 
+El proceso que se sigue con la herramienta para generar sugerencias de precios generalmente sigue el siguiente esquema:
+\begin{enumerate}
+	\item Importación de funciones de la herramienta.
+	\item Lectura de catálogos con la función leeCatalogos.
+	\item Construcción de tablas de precios de la competencia con la función calcCompetencia.
+	\item Generación de tabla maestra datos\_<Anio><Semana>.csv con la función calcDatos.
+	\item Generación de sugerencias de precios asociadas a la tabla maestra con la función calcPrecios.
+	\item Cruce con inventario y ventas con la función calcImpactoPrecios, en este paso también se calculan los impactos de cambio de precios.
+\end{enumerate}
+
+Por ejemplo, supóngase que los datos son colocados en la carpeta /home/black/Documents/chedraui/
+y se desea generar sugerencias de precios con datos de la semana 201751 utilizando el inventario del 9 de Enero del 2018.
+Spark debe estar instalado en la máquina proporcionada por BlackTrust, 
+su consola se debe iniciar junto con el archivo jar de la herramienta,
+\begin{verbatim}
+$ start-spark
+$ spark-shell --jars herramienta-chedraui_2.11-1.0.jar \ 
+  --driver-memory 8g
+\end{verbatim}
+es posible que el nombre del archivo jar sea ligeramente distinto 
+y esta línea se debe ajustar según ese nombre.
+
+En la práctica se recomienda partir el proceso en dos, 
+la generación de la tabla maestra y luego el cálculo de impactos.
+Para la primera parte del proceso, los comandos a seguir en la consola de Spark son: 
+\begin{lstlisting}[breaklines, language=Scala]
+// Importar funciones
+import org.btrust.chedrauiHerramienta.Catalogues.leeCatalogos
+import org.btrust.chedrauiHerramienta.Calc.{calcCompetencia,calcDatos,calcPrecios,calcImpactoPrecios}
+spark.conf.set("spark.sql.autoBroadcastJoinThreshold",-1)
+
+// Carpeta de datos
+val rootDir = "/home/black/Documents/chedraui"
+
+// Agno, semana, inventario
+val myYear = 2017
+val myWeek = 51
+val inven  = "Inven_09Ene18.csv"
+
+// Leer catalogos
+val cats  = leeCatalogos(rootDir,matriz="matriz_09Ene2018.csv")
+
+// Generar tablas de competencia
+calcCompetencia(myYear,myWeek,cats,rootDir,uri)
+
+// Generar tabla maestra de datos
+calcDatos(myYear,myWeek,cats,rootDir,uri=uri,inven=inven)
+\end{lstlisting}
+
+En este punto se recomienda cerrar la consola con Control+D y reiniciarla,
+el colector de basura se puede saturar después de calcDatos. 
+Hasta ahora se han generado los archivos con prefijos ``comp'' y ``datos.''
+La segunda parte del proceso es generar la tabla de impactos, 
+\begin{lstlisting}[breaklines, language=Scala]
+// Importar funciones
+import org.btrust.chedrauiHerramienta.Catalogues.leeCatalogos
+import org.btrust.chedrauiHerramienta.Calc.{calcCompetencia,calcDatos,calcPrecios,calcImpactoPrecios}
+spark.conf.set("spark.sql.autoBroadcastJoinThreshold",-1)
+
+// Carpeta de datos
+val rootDir = "/home/black/Documents/chedraui"
+
+// Agno, semana, inventario
+val myYear = 2017
+val myWeek = 51
+val inven  = "Inven_09Ene18.csv"
+
+// Leer catalogos
+val cats  = leeCatalogos(rootDir,matriz="matriz_09Ene2018.csv")
+
+// Generar tabla de precios sugeridos
+calcPrecios(myYear,myWeek,cats,rootDir,uri)
+
+// Generar tabla de impactos, cruce de precios con inventario
+calcImpactoPrecios(myYear,myWeek,cats,inven,rootDir)
+\end{lstlisting}
+Como en este caso se reinició la consola, se tienen que declarar las variables
+y leer los catálogos de nuevo. 
+Al terminar el proceso, se generan los archivos con prefijo ``precios'' e ``impactos.''
+
+
+
+\subsection{Extracción de Resultados}
+
+Debido al funcionamiento interno de la herramienta y sus dependencias
+los resultados se depositan en el disco duro en particiones (archivos part-).  
+Los archivos CSV resultantes son en realidad carpetas que contienen las particiones
+y los encabezados de estos archivos.
+
+Junto con la herramienta, se ha incluido una colección de scripts 
+que permiten la extracción de estas carpetas en un solo archivo consolidado.
+Los scripts consisten en la lectura y consolidación de las particiones y encabezados 
+de los resultados.  
+
+Los scripts son sc\_listaCSV.bash, sc\_extraeCSV.bash y sc\_extraeTodo.bash.
+El archivo README incluido con ellos detalla el uso de estos scripts en la terminal.

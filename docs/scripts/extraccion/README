@@ -1,0 +1,20 @@
+EXTRACCION DE RESULTADOS DE LA HERRAMIENTA 
+Rodolfo Navarrete Pérez
+
+Se incluyen los scripts que utilizo para la extracción de resultados de la herramienta.
+Dentro de la carpeta de datos (en la misma donde estan los catálogos y las carpetas de vantas) 
+se crea una carpeta con cualquier nombre (por ejemplo resultadosHumanos) y se colocan los scripts ahí.
+
+Descripciones breves de los scripts:
+./sc_listaCSV.bash  Crea la lista de archivos CSV de la carpeta de resultados, llamado listado.csv
+./sc_extraeTodo.bash Extrae todos los archivos dentro de listado.csv. Este se usa para extracciones en masa.
+./sc_extraeCSV.bash Extrae un CSV indicado en la línea de comandos. Por ejemplo "./sc_extraeCSV.bash impacto_201802.csv". Se usa para extracciones individuales.
+
+Si se desea extraer todos los archivos dentro de resultados/, se escribe dentro de la terminal:
+./listaCSV.bash
+./extraeTodo.bash
+El primer paso crea el listado de csv listado.csv. 
+El segundo paso extrae los archivos.
+Es posible editar el archivo listado.csv si de desea excluir archivos.
+
+Se recomienda leer los contenidos de los scripts para comprender su funcionamiento interno.

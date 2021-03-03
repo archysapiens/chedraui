@@ -1,0 +1,73 @@
+\BOOKMARK [1][-]{section.1}{Descripci\363n de la Herramienta}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Reglas de Negocio y Proceso}{section.1}% 2
+\BOOKMARK [3][-]{subsubsection.1.1.1}{Preparaci\363n de Precios de Competencia}{subsection.1.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.1.2}{Cruce de Precios y Detecci\363n de Promociones}{subsection.1.1}% 4
+\BOOKMARK [3][-]{subsubsection.1.1.3}{Sugerencias de Precios}{subsection.1.1}% 5
+\BOOKMARK [1][-]{section.2}{Requerimientos e Instalaci\363n}{}% 6
+\BOOKMARK [2][-]{subsection.2.1}{Sistema Operativo y Hardware}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.2}{Java}{section.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Oracle Java}{subsection.2.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.2.2}{OpenJDK}{subsection.2.2}% 10
+\BOOKMARK [2][-]{subsection.2.3}{Scala}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.4}{Spark}{section.2}% 12
+\BOOKMARK [2][-]{subsection.2.5}{Hadoop}{section.2}% 13
+\BOOKMARK [2][-]{subsection.2.6}{Configuraci\363n de Cluster}{section.2}% 14
+\BOOKMARK [3][-]{subsubsection.2.6.1}{Configuraci\363n SSH y de Hosts}{subsection.2.6}% 15
+\BOOKMARK [3][-]{subsubsection.2.6.2}{Configuraci\363n de Spark Modo Cluster}{subsection.2.6}% 16
+\BOOKMARK [3][-]{subsubsection.2.6.3}{Configuraci\363n de Hadoop Modo Cluster}{subsection.2.6}% 17
+\BOOKMARK [2][-]{subsection.2.7}{Instalaci\363n de la Herramienta}{section.2}% 18
+\BOOKMARK [3][-]{subsubsection.2.7.1}{Carpeta de Datos}{subsection.2.7}% 19
+\BOOKMARK [3][-]{subsubsection.2.7.2}{Carpeta de Trabajo de Spark}{subsection.2.7}% 20
+\BOOKMARK [2][-]{subsection.2.8}{Herramientas Auxiliares}{section.2}% 21
+\BOOKMARK [3][-]{subsubsection.2.8.1}{LibreOffice}{subsection.2.8}% 22
+\BOOKMARK [3][-]{subsubsection.2.8.2}{MDB Tools}{subsection.2.8}% 23
+\BOOKMARK [2][-]{subsection.2.9}{Resumen de Variables de Entorno}{section.2}% 24
+\BOOKMARK [1][-]{section.3}{Datos de Entrada y su Preparaci\363n}{}% 25
+\BOOKMARK [2][-]{subsection.3.1}{Cat\341logos}{section.3}% 26
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Tiendas}{subsection.3.1}% 27
+\BOOKMARK [3][-]{subsubsection.3.1.2}{SKUs}{subsection.3.1}% 28
+\BOOKMARK [3][-]{subsubsection.3.1.3}{Deciles Nacionales}{subsection.3.1}% 29
+\BOOKMARK [3][-]{subsubsection.3.1.4}{Deciles por Tienda}{subsection.3.1}% 30
+\BOOKMARK [3][-]{subsubsection.3.1.5}{Impuestos}{subsection.3.1}% 31
+\BOOKMARK [3][-]{subsubsection.3.1.6}{Excepciones}{subsection.3.1}% 32
+\BOOKMARK [3][-]{subsubsection.3.1.7}{Grupos de Art\355culos}{subsection.3.1}% 33
+\BOOKMARK [3][-]{subsubsection.3.1.8}{Umbrales de Detecci\363n de Promociones}{subsection.3.1}% 34
+\BOOKMARK [3][-]{subsubsection.3.1.9}{M\341rgenes Objetivo por Clase}{subsection.3.1}% 35
+\BOOKMARK [3][-]{subsubsection.3.1.10}{Matriz de Competencia}{subsection.3.1}% 36
+\BOOKMARK [2][-]{subsection.3.2}{Datos Peri\363dicos}{section.3}% 37
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Ventas de Chedraui}{subsection.3.2}% 38
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Inventarios}{subsection.3.2}% 39
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Precios de la Competencia}{subsection.3.2}% 40
+\BOOKMARK [2][-]{subsection.3.3}{Conversi\363n de archivos a formato csv}{section.3}% 41
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Excel a csv}{subsection.3.3}% 42
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Access/MDB a csv}{subsection.3.3}% 43
+\BOOKMARK [1][-]{section.4}{Funciones de la Herramienta}{}% 44
+\BOOKMARK [2][-]{subsection.4.1}{Funciones Principales}{section.4}% 45
+\BOOKMARK [3][-]{subsubsection.4.1.1}{leeCatalogos}{subsection.4.1}% 46
+\BOOKMARK [3][-]{subsubsection.4.1.2}{calcCompetencia}{subsection.4.1}% 47
+\BOOKMARK [3][-]{subsubsection.4.1.3}{calcDatos}{subsection.4.1}% 48
+\BOOKMARK [3][-]{subsubsection.4.1.4}{calcPrecios}{subsection.4.1}% 49
+\BOOKMARK [3][-]{subsubsection.4.1.5}{calcImpactoPrecios}{subsection.4.1}% 50
+\BOOKMARK [2][-]{subsection.4.2}{Funciones Auxiliares}{section.4}% 51
+\BOOKMARK [3][-]{subsubsection.4.2.1}{sumaVentas}{subsection.4.2}% 52
+\BOOKMARK [3][-]{subsubsection.4.2.2}{listaUPCsCompetencia}{subsection.4.2}% 53
+\BOOKMARK [1][-]{section.5}{Resultados}{}% 54
+\BOOKMARK [2][-]{subsection.5.1}{compHist}{section.5}% 55
+\BOOKMARK [2][-]{subsection.5.2}{compNacional}{section.5}% 56
+\BOOKMARK [2][-]{subsection.5.3}{compRcntNacional}{section.5}% 57
+\BOOKMARK [2][-]{subsection.5.4}{compRcnt}{section.5}% 58
+\BOOKMARK [2][-]{subsection.5.5}{preciosAux}{section.5}% 59
+\BOOKMARK [2][-]{subsection.5.6}{preciosExcepciones}{section.5}% 60
+\BOOKMARK [2][-]{subsection.5.7}{precios}{section.5}% 61
+\BOOKMARK [2][-]{subsection.5.8}{impacto}{section.5}% 62
+\BOOKMARK [2][-]{subsection.5.9}{impactoPromos}{section.5}% 63
+\BOOKMARK [2][-]{subsection.5.10}{impactoConteos}{section.5}% 64
+\BOOKMARK [2][-]{subsection.5.11}{impactoNulos}{section.5}% 65
+\BOOKMARK [2][-]{subsection.5.12}{impactoSKU}{section.5}% 66
+\BOOKMARK [2][-]{subsection.5.13}{impactoSubDepto}{section.5}% 67
+\BOOKMARK [2][-]{subsection.5.14}{impactoTienda}{section.5}% 68
+\BOOKMARK [2][-]{subsection.5.15}{sumaVentas}{section.5}% 69
+\BOOKMARK [1][-]{section.6}{Procesos}{}% 70
+\BOOKMARK [2][-]{subsection.6.1}{Estructura de Archivos y Carpetas para la Herramienta}{section.6}% 71
+\BOOKMARK [2][-]{subsection.6.2}{Sugerencias de Precios}{section.6}% 72
+\BOOKMARK [2][-]{subsection.6.3}{Extracci\363n de Resultados}{section.6}% 73

@@ -1,0 +1,534 @@
+\section{Resultados} \label{outputs}
+
+La herramienta nos proporcionará los archivos que se describen en esta sección.
+Generalmente, los nombres de los archivos de resultados de la herramienta toman la forma:
+
+\textbf{<nombre>\_<AñoCompleto><SemanaDosDigitos>.csv}
+
+Donde <nombre> es el nombre básico del archivo, 
+<AñoCompleto> es el año en formato completo y
+<SemanaDosDigitos> es el número de semana con un cero a la izquierda si esta es menor que 10.
+Por ejemplo:
+
+\textbf{impacto\_201809.csv}
+
+Este es el archivo ``impacto'' correspondiente a la semana 9 del 2018.
+La gran mayoría de los archivos resultantes siguen este formato,
+se indicará cuando este no sea el caso.
+
+\subsection{compHist}
+Es un archivo auxiliar con medidas estadísticas de las últimas 6 semanas, por artículo y por tienda.
+El nombre del archivo debe tener el siguiente formato:
+
+\textbf{compHist\_<AñoCompleto><Semana>\.csv}
+
+\begin{center}
+	\begin{tabular}{| l | p{7cm} |}
+		\hline
+		Campo & Descripción \\ 
+		\hline
+		UPC &  Código de barras \\
+		TiendaCompetencia & Identificador numérico \\
+		FuenteCompetencia & Nombre del proveedor de los precios de competencia, por ejemplo Nielsen. El nombre del proveedor de precios va en minúsculas \\
+		PrecioCompetenciaHistProm & Promedio del precio del UPC en la tienda competencia a lo largo del tiempo \\
+		PrecioCompetenciaHistDesv & Desviación estándar del precio del UPC en la tienda competencia a lo largo del tiempo \\
+		PrecioCompetenciaHistMin & Precio mínimo del UPC en la tienda competencia a lo largo del tiempo \\
+		PrecioCompetenciaHistMax & Precio máximo del UPC en la tienda competencia a lo largo del tiempo \\
+		PrecioCompetenciaHistMedn & Mediana del precio del UPC en la tienda competencia a lo largo del tiempo \\
+		PrecioCompetenciaHistPr10 & Es el valor del percentil 10 de precios \\
+		PrecioCompetenciaHistPr20 & Es el valor del percentil 20 de precios \\
+		PrecioCompetenciaHistPr80 & Es el valor del percentil 80 de precios \\
+		PrecioCompetenciaHistPr90 & Es el valor del percentil 90 de precios \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\newpage
+
+
+\subsection{compNacional}
+Son medidas estadísticas de precios de productos en la semana cero y la semana -2, esto con respecto a la semana contemplada.
+El nombre del archivo debe tener el siguiente formato:
+
+\textbf{compNacional\_<AñoCompleto><Semana>.csv}
+
+\begin{center}
+	\begin{tabular}{| l | p{7cm} |}
+		\hline
+		Campo & Descripción \\ 
+		\hline
+		UPC &  Código de barras \\
+		PrecioMercadoProm & Promedio del precio del UPC sobre todas las tiendas de la competencia contempladas en la matriz de competencia dos semanas anteriores con respecto a la semana contemplada \\
+		PrecioMercadoDesv & Desviación estándar del precio del UPC sobre todas las tiendas de la competencia contempladas en la matriz de competencia dos semanas anteriores con respecto a la semana contemplada \\
+		PrecioMercadoMedn & Mediana del precio del UPC sobre todas las tiendas de la competencia contempladas en la matriz de competencia dos semanas anteriores con respecto a la semana contemplada \\
+		PrecioMercadoFrec & Es la frecuencia de la moda (PrecioMercadoModa )\\
+		PrecioMercadoModa & Es la moda del precio en la semana -2 \\
+		PrecioMercadoActualProm & Es el precio promedio  del UPC sobre todas las tiendas de la competencia contempladas en la matriz de competencia  en la semana contemplada \\
+		PrecioMercadoActualDesv & Desviación estándar del precio del UPC sobre todas las tiendas de la competencia contempladas en la matriz de competencia en la semana contemplada \\
+		PrecioMercadoActualMedn & Mediana del precio del UPC sobre todas las tiendas de la competencia contempladas en la matriz de competencia en la semana contemplada \\
+		PrecioMercadoActualFrec & Es la frecuencia de la moda (PrecioMercadoActualModa)\\
+		PrecioMercadoActualModa & Es la moda del precio en la semana actual \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\newpage
+
+
+
+\subsection{compRcntNacional}
+Son medidas estadísticas de precios de la competencia.
+
+El nombre del archivo debe tener el siguiente formato:
+
+\textbf{compRcntNacional\_<AñoCompleto><Semana>.csv}
+
+\begin{center}
+	\begin{tabular}{| l | p{7cm} |}
+		\hline
+		Campo & Descripción \\ 
+		\hline
+		SemanaMercadoReciente & Es la semana en la que se encontró el precio más reciente \\
+		UPC & Código de barras \\
+		PrecioMercadoRecienteProm & Es el promedio del precio de mercado más reciente \\
+		PrecioMercadoRecienteMedn & Es la mediana del precio de mercado más reciente \\
+		PrecioMercadoRecienteFrec & Es la frecuencia de la moda (PrecioMercadoRecienteModa) \\
+		PrecioMercadoRecienteModa & Es la moda del precio de mercado más reciente \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+
+\subsection{compRcnt}
+Son los precios de la competencia.
+
+El nombre del archivo debe tener el siguiente formato:
+
+\textbf{compRcnt\_<AñoCompleto><Semana>.csv}
+
+\begin{center}
+	\begin{tabular}{| l | p{7cm} |}
+		\hline
+		Campo & Descripción \\ 
+		\hline
+		UPC & Código de barras  \\
+		TiendaCompetencia & Identificador numérico \\
+		FuenteCompetencia & Nombre del proveedor de los precios de competencia, por ejemplo Nielsen. El nombre del proveedor de precios va en minúsculas \\
+		SemanaReciente & Es la semana más reciente donde se encontraron los precios \\
+		PrecioCompetenciaReciente & Es el precio más reciente encontrado \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+\newpage
+
+
+\subsection{preciosAux}
+
+El nombre del archivo debe tener el siguiente formato:
+
+\textbf{preciosAux\_<AñoCompleto><Semana>.csv}
+
+\begin{center}
+	\begin{tabular}{| l | p{7cm} |}
+		\hline
+		Campo & Descripción \\ 
+		\hline
+		SKU & Código de barras \\
+		UPC & Código de barras  \\
+		Depto & Identificador numérico \\
+		SubDepto & Identificador numérico \\
+		Descripcion & Nombre del artículo \\
+		Tienda & Identificador numérico \\
+		Nombre\_tda & Nombre del centro \\
+		PrecioSugerido & Es el precio sugerido por la herramienta \\
+		FuenteSugerido & Nombre del proveedor de donde proviene el precio \\
+		Prioridad & Es la prioridad de la tienda de donde se obtiene el precio \\
+		PrecioPuntual & Es el precio del producto en la tienda de la competencia \\
+		TiendaCompetencia & Identificador numérico \\
+		CadenaCompetencia & Es la cadena a la que pertenece la tienda de la competencia \\
+		FuenteCompetencia & Nombre del proveedor de los precios de competencia, por ejemplo Nielsen. El nombre del proveedor de precios va en minúsculas \\
+		MedianaTienda & Es la mediana del precio en la tienda \\
+		MedianaNacional & Es la mediana del precio en la semana -2 \\
+		ModaNacional & Es la moda del precio en la semana -2 \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+\newpage
+
+
+\subsection{preciosExcepciones}
+Contiene las sugerencias de precios para artículos con excepción.
+El nombre del archivo debe tener el siguiente formato:
+
+\textbf{preciosExcepciones\_<AñoCompleto><Semana>.csv}
+
+\begin{center}
+	\begin{tabular}{| l | p{7cm} |}
+		\hline
+		Campo & Descripción \\
+		\hline
+		GrupoArticulo & Campo numérico \\
+		SKU & Identificador numérico \\
+		UPC & Código de barras \\
+		Tienda & Identificador numérico \\
+		PrecioSugerido & Precio sugerido para la semana contemplada \\
+		FuenteSugerido & Nombre del proveedor de donde proviene el precio \\
+		Prioridad & Es la prioridad de la tienda de donde se obtiene el precio \\
+		PrecioPuntual & Es el precio del producto en la tienda de la competencia \\
+		TiendaCompetencia & Identificador numérico \\
+		CadenaCompetencia & Es la cadena a la que pertenece la tienda de la competencia \\
+		FuenteCompetencia & Nombre del proveedor de los precios de competencia, por ejemplo Nielsen. El nombre del proveedor de precios va en minúsculas \\
+		MedianaTienda & Es la mediana del precio en la tienda \\
+		MedianaNacional & Es la mediana del precio en la semana -2 \\
+		ModaNacional & Es la moda del precio en la semana -2 \\
+		PrecioGrupo & Precio mínimo de ese grupo de precios en la tienda \\
+		MedianaGrupo & Es el mínimo de las medianas de los artículos que pertenecen al GrupoArticulo \\
+		ModaGrupo & Es el mínimo de las modas en el grupo \\
+		Excepcion & Descripción de la excepción del artículo \\
+		ExcepcionGrupoSKU & SKU del artículo que presenta la excepción del grupo \\
+		ExcepcionGrupo & Primera excepción presentada en alguno de los artículos del grupo \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+\newpage
+
+
+\subsection{precios}
+Contiene las sugerencias de precios para artículos sin excepción.
+
+El nombre del archivo debe tener el siguiente formato:
+
+\textbf{precios\_<AñoCompleto><Semana>.csv}
+
+\begin{center}
+	\begin{tabular}{| l | p{7cm} |}
+		\hline
+		Campo & Descripción \\
+		\hline
+		GrupoArticulo & Grupo al que pertenece el artículo en cuestión \\
+		SKU & Identificador numérico \\
+		UPC & Código de barras \\
+		Tienda & Identificador numérico \\
+		PrecioSugerido & Precio sugerido para la semana contemplada \\
+		FuenteSugerido & Nombre del proveedor de donde proviene el precio \\
+		Prioridad & Es la prioridad de la tienda de donde se obtiene el precio \\
+		PrecioPuntual & Es el precio del producto en la tienda de la competencia \\
+		TiendaCompetencia & Identificador numérico \\
+		CadenaCompetencia & Es la cadena a la que pertenece la tienda de la competencia \\
+		FuenteCompetencia & Nombre del proveedor de los precios de competencia, por ejemplo Nielsen. El nombre del proveedor de precios va en minúsculas \\
+		MedianaTienda & Es la mediana del precio en la tienda \\
+		MedianaNacional & Es la mediana del precio en la semana -2 \\
+		ModaNacional & Es la moda del precio en la semana -2 \\
+		PrecioGrupo & Precio mínimo de ese grupo de precios en la tienda \\
+		MedianaGrupo & Es el mínimo de las medianas de los artículos que pertenecen al GrupoArticulo \\
+		ModaGrupo & Es el mínimo de las modas en el grupo \\
+		Excepcion & Descripción de la excepción del artículo \\
+		SKUGrupo & SKU del artículo que presenta la excepción del grupo \\
+		ExcepcionGrupo & Primera excepción presentada en alguno de los artículos del grupo \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+\newpage
+
+
+\subsection{impacto}
+Contiene sugerencias de precios y los impactos con respecto al precio de regulación central y al precio promedio.
+El nombre del archivo debe tener el siguiente formato:
+
+\textbf{impacto\_<AñoCompleto><Semana>.csv}
+
+\begin{longtable}{| l | p{7cm} |}
+	\hline
+	Campo & Descripción \\ 
+	\hline
+	\endhead
+	\hline
+	\endfoot
+	Tienda & Identificador numérico \\
+	SKU & Identificador numérico \\
+	GrupoArticulo & Grupo al que pertenece el artículo en cuestión \\
+	InvFinUni & Contiene el número de unidades en inventario \\
+	InvFinVta & Campo numérico \\
+	PrecioCentralTotal & Precio de regulación central con impuestos incluidos \\
+	PrecioPromedioTotal & Precio promedio de venta con impuestos incluidos al que se vendió ese artículo en la semana contemplada \\
+	UPC & Código de barras \\
+	PrecioSugerido & Precio sugerido para la semana contemplada \\
+	FuenteSugerido & Nombre del proveedor de donde proviene el precio \\
+	Prioridad & Es la prioridad de la tienda de donde se obtiene el precio \\
+	PrecioPuntual & Es el precio del producto en la tienda de la competencia \\
+	TiendaCompetencia & Identificador numérico \\
+	CadenaCompetencia & Es la cadena a la que pertenece la tienda de la competencia \\
+	FuenteCompetencia & Nombre del proveedor de los precios de competencia, por ejemplo Nielsen. El nombre del proveedor de precios va en minúsculas \\
+	MedianaTienda & Es la mediana del precio en la tienda \\
+	MedianaNacional & Es la mediana del precio en la semana -2 \\
+	ModaNacional & Es la moda del precio en la semana -2 \\
+	PrecioGrupo & Precio mínimo de ese grupo de precios en la tienda \\
+	MedianaGrupo & Es el mínimo de las medianas de los artículos que pertenecen al GrupoArticulo \\
+	ModaGrupo & Es el mínimo de las modas en el grupo \\
+	ImpactoConCentral & Es igual a InvFinUni * (PrecioSugerido - PrecioCentralTotal) \\
+	ImpactoConPromedio  & Es igual a InvFinUni * (PrecioSugerido - PrecioPromedioTotal) \\
+	ExcepcionGrupo & Descripción de la excepción del grupo \\
+	ExcepcionGrupoSKU & Es el SKU del artículo que presenta la excepción del grupo \\
+	Excepcion & Descripción de la excepción del artículo \\
+	Descripcion & Nombre del artículo \\
+	GrupoArticulos & Campo numérico \\
+	Estatus & Campo alfanumérico \\
+	Depto & Identificador numérico \\
+	DescripDepto & Nombre del departamento \\
+	SubDepto & Identificador numérico \\
+	DescripSubdepto & Nombre del subdepartamento \\
+	Clase & Identificador numérico \\
+	DescripClase & Nombre de la clase  \\
+	SubClase & Identificador numérico \\
+	DescripSubCl & Nombre de la subclase \\
+	Num\_Dpt & Campo numérico \\
+	DecilNacional & Campo numérico, puede tener como prefijo "D" \\
+	Nombre\_tda & Nombre del centro \\
+	Formato & Formato del centro \\ 
+	Region & Identificador alfanumérico \\
+	Zona & Identificador alfanumérico \\
+	Tipo\_Tda & Tipo del centro \\
+\end{longtable}
+
+
+
+
+\subsection{impactoPromos}
+Es la lista de impactos para los artículos que tuvieron un precio de promoción en la competencia.
+
+El nombre del archivo debe tener el siguiente formato:
+
+\textbf{impactoPromos\_<AñoCompleto><Semana>.csv}
+
+	\begin{longtable}{| l | p{7cm} |}
+		\hline
+		Campo & Descripción \\
+		\hline
+		\endhead
+		\hline
+		\endfoot
+		Tienda & Identificador numérico \\
+		SKU & Identificador numérico \\
+		GrupoArticulo & Grupo al que pertenece el artículo en cuestión \\
+		InvFinUni & Contiene el número de unidades en inventario \\
+		InvFinVta & Campo numérico \\
+		PrecioCentralTotal & Precio de regulación central con impuestos incluidos \\
+		PrecioPromedioTotal & Precio promedio de venta con impuestos incluidos al que se vendió ese artículo en la semana contemplada \\
+		UPC & Código de barras \\
+		PrecioSugerido & Precio sugerido para la semana contemplada \\
+		FuenteSugerido & Nombre del proveedor de donde proviene el precio \\
+		Prioridad & Es la prioridad de la tienda de donde se obtiene el precio \\
+		PrecioPuntual & Es el precio del producto en la tienda de la competencia \\
+		TiendaCompetencia & Identificador numérico \\
+		CadenaCompetencia & Es la cadena a la que pertenece la tienda de la competencia \\
+		FuenteCompetencia & Nombre del proveedor de los precios de competencia, por ejemplo Nielsen. El nombre del proveedor de precios va en minúsculas \\
+		MedianaTienda & Es la mediana del precio en la tienda \\
+		MedianaNacional & Es la mediana del precio en la semana -2 \\
+		ModaNacional & Es la moda del precio en la semana -2 \\
+		PrecioGrupo & Precio mínimo de ese grupo de precios en la tienda \\
+		MedianaGrupo & Es el mínimo de las medianas de los artículos que pertenecen al GrupoArticulo \\
+		ModaGrupo & Es el mínimo de las modas en el grupo \\
+		ImpactoConCentral & Es la suma de InvFinUni * (PrecioSugerido - PrecioCentralTotal) para el SKU en cuestión \\
+		ImpactoConPromedio & Es la suma de InvFinUni * (PrecioSugerido - PrecioPromedioTotal) para el SKU en cuestión \\
+		ExcepcionGrupo & Descripción de la excepción del grupo \\
+		ExcepcionGrupoSKU & Es el SKU del artículo que presenta la excepción del grupo \\
+		Excepcion & Descripción de la excepción del artículo \\
+		Descripcion &  Nombre del artículo \\
+		GrupoArticulos & Campo numérico \\
+		Estatus & Campo alfanumérico \\
+		Depto & Identificador numérico \\
+		DescripDepto & Nombre del departamento \\
+		SubDepto & Identificador numérico \\
+		DescripSubdepto & Nombre del subdepartamento \\
+		Clase & Identificador numérico \\
+		DescripClase & Nombre de la clase \\
+		SubClase & Identificador numérico \\
+		DescripSubCl & Nombre de la subclase \\
+		Num\_Dpt & Campo numérico \\
+		DecilNacional & Campo numérico, puede tener como prefijo "D" \\
+		Nombre\_tda & Nombre del centro \\
+		Formato & Formato del centro \\
+		Region & Identificador alfanumérico \\
+		Zona & Identificador alfanumérico \\
+		Tipo\_Tda & Tipo del centro \\
+	\end{longtable}
+
+
+
+\subsection{impactoConteos}
+Es un reporte de cuántos precios se están regulando.
+
+El nombre del archivo debe tener el siguiente formato:
+
+\textbf{impactoConteos\_<AñoCompleto><Semana>.csv}
+
+\begin{center}
+	\begin{tabular}{| l | p{7cm} |}
+		\hline
+		Campo & Descripción \\
+		\hline
+		Tienda & Identificador numérico \\
+		Prioridad & Es la prioridad de la tienda de donde se obtiene el precio \\
+		FuenteSugerido & Nombre del proveedor de donde proviene el precio \\
+		Conteo & indica cuántos artículos tienen precio sugerido \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+
+\subsection{impactoNulos}
+Es la lista de artículos para los cuales no hubo sugerencias de precios.
+El nombre del archivo debe tener el siguiente formato:
+
+\textbf{impactoNulos\_<AñoCompleto><Semana>.csv}
+
+\begin{center}
+	\begin{tabular}{| l | p{7cm} |}
+		\hline
+		Campo & Descripción \\
+		\hline
+		SKU & Identificador numérico \\
+		GrupoArticulo & Grupo al que pertenece el artículo en cuestión \\
+		TodosNulos & Esta variable toma dos valores, 0 y 1. Toma el valor 0 si en al menos una tienda se pudo sugerir un precio. Toma el valor 1 si en ninguna tienda se pudo sugerir precio \\
+		ExcepcionGrupo & Descripción de la excepción del grupo \\
+		ExcepcionGrupoSKU & Es el SKU del artículo que presenta la excepción del grupo \\
+		UPC & Código de barras \\
+		Descripcion & Nombre del artículo \\
+		GrupoArticulos & Campo numérico \\
+		Estatus & Campo alfanumérico \\
+		Depto & Identificador numérico \\
+		DescripDepto & Nombre del departamento \\
+		SubDepto & Identificador numérico \\
+		DescripSubdepto & Nombre del subdepartamento \\
+		Clase & Identificador numérico \\
+		DescripClase & Nombre de la clase  \\
+		SubClase & Identificador numérico \\
+		DescripSubCl & Nombre de la subclase \\
+		Num\_Dpt & Campo numérico \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+\subsection{impactoSKU}
+Es el archivo que contiene la suma de impactos para cada SKU.
+
+El nombre del archivo debe tener el siguiente formato:
+
+\textbf{impactoSKU\_<AñoCompleto><Semana>.csv}
+
+\begin{center}
+	\begin{tabular}{| l | p{7cm} |}
+		\hline
+		Campo & Descripción \\
+		\hline
+		SKU & Identificador numérico \\
+		UPC & Código de barras \\
+		ImpactoConCentral & Es la suma de InvFinUni * (PrecioSugerido - PrecioCentralTotal) para el SKU en cuestión \\
+		ImpactoConPromedio & Es la suma de InvFinUni * (PrecioSugerido - PrecioPromedioTotal) para el SKU en cuestión \\
+		Descripcion & Nombre del artículo \\
+		GrupoArticulos & Campo numérico \\
+		Estatus & Campo alfanumérico \\
+		Depto & Identificador numérico \\
+		DescripDepto & Nombre del departamento \\
+		SubDepto & Identificador numérico \\
+		DescripSubdepto & Nombre del subdepartamento \\
+		Clase & Identificador numérico \\
+		DescripClase & Nombre de la clase \\
+		SubClase & Identificador numérico \\
+		DescripSubCl & Nombre de la subclase \\
+		Num\_Dpt & Campo numérico \\
+		DecilNacional & Campo numérico, puede tener como prefijo "D" \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\newpage
+
+\subsection{impactoSubDepto}
+Guarda la suma de los impactos por subdepartamento.
+
+El nombre del archivo debe tener el siguiente formato:
+
+\textbf{impactoSubDepto\_<AñoCompleto><Semana>.csv}
+
+\begin{center}
+	\begin{tabular}{| l | p{7cm} |}
+		\hline
+		Campo & Descripción \\ 
+		\hline
+		Tienda & Identificador numérico \\
+		Depto & Identificador numérico \\
+		SubDepto & Identificador numérico \\
+		NoNulos & es el número de artículos con precio sugerido \\
+		Nulos & es el número de artículos sin precio sugerido \\
+		PorcentajeRegulado & es el porcentaje de artículos con precio sugerido \\
+		ImpactoConCentral & Es la suma de InvFinUni * (PrecioSugerido - PrecioCentralTotal) para el SKU en cuestión \\
+		ImpactoConPromedio & Es la suma de InvFinUni * (PrecioSugerido - PrecioPromedioTotal) para el SKU en cuestión \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+
+\subsection{impactoTienda}
+Es el archivo que contiene la suma de impactos para cada tienda.
+
+El nombre del archivo debe tener el siguiente formato:
+
+\textbf{impactoTienda\_<AñoCompleto><Semana>.csv}
+
+\begin{center}
+	\begin{tabular}{| l | p{7cm} |}
+		\hline
+		Campo & Descripción \\
+		\hline
+		Tienda & Identificador numérico \\
+		ImpactoConCentral & Es la suma de InvFinUni * (PrecioSugerido - PrecioCentralTotal) para la tienda en cuestión \\
+		ImpactoConPromedio & Es la suma de InvFinUni * (PrecioSugerido - PrecioPromedioTotal) para la tienda en cuestión \\
+		Nombre\_tda & Nombre del centro \\
+		Formato & Formato del centro \\
+		Region & Identificador alfanumérico \\
+		Zona & Identificador alfanumérico \\
+		Tipo\_Tda & Tipo del centro \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\newpage
+
+\subsection{sumaVentas}
+Es la suma de las ventas en las semanas indicadas (semana inicio y semana final).
+
+El nombre del archivo debe tener el siguiente formato, 
+se define YearWeek como la combinación de año y semana (por ejemplo 201802):
+
+\textbf{sumaVentas\_<YearWeek1>a<YearWeek2>.csv}
+
+
+\begin{center}
+	\begin{tabular}{| l | p{7cm} |}
+		\hline
+		Campo & Descripción \\ 
+		\hline
+		SKU & Identificador numérico \\
+		Tienda & Identificador numérico \\
+		TotalVta & Es la suma de las ventas en pesos en las semanas indicadas \\
+		TotalUni & Es la suma de las unidades vendidas en las semanas indicadas \\
+		Depto & Identificador numérico \\
+		SubDepto & Identificador numérico \\
+		Clase & Identificador numérico \\
+		SubClase & Identificador numérico \\
+		\hline
+	\end{tabular}
+\end{center}

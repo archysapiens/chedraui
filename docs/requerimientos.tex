@@ -1,0 +1,703 @@
+\section{Requerimientos e Instalación} \label{reqs}
+
+En esta sección se cubren los requerimientos de la herramienta de precios, 
+tanto como software y hardware.
+Adicionalmente, se cubren los pasos de instalación de la paquetería y librerías 
+requeridas para correr la herramienta.
+
+En resumen, la herramienta de precios es un paquete escrito sobre Apache Spark, 
+el cual a su vez corre sobre la máquina virtual de Java (JVM) 
+y tiene una interfaz nativa en Scala. 
+
+Las versiones del software bajo las que la herramienta ha sido escrita y probada son:
+\begin{table}[htb]
+	\centering 
+	\begin{tabular}{| l | l | l |} 
+		\hline 
+		Software & Versión & Notas \\ \hline
+		Java & JDK Oracle 8 & \\
+		Scala & 2.11.8 & No usar Dotty \\
+		Apache Spark & 2.2.0 & Versiones Spark 2.2.x son compatibles \\
+		Hadoop & 2.7.3 & Opcional para HDFS \\ \hline
+	\end{tabular}
+\end{table}
+La herramienta ha sido corrida sobre distintas subversiones de Scala 2.12 y 
+sobre OpenJDK 1.8 en lugar de Java 8. 
+Sin embargo, se recomiendan las versiones mencionadas en la lista anterior.
+
+Debido a que se usa Spark y la herramienta trabaja sobre Spark, 
+es posible correr la herramienta sobre un cluster en lugar de una sola máquina.
+En el caso de correr la herramienta sobre un cluster, 
+se debe utilizar el Hadoop Filesystem (HDFS)
+para poder distribuir los archivos en el mismo.
+
+
+
+\subsection{Sistema Operativo y Hardware}
+
+Debido a que Spark corre sobre la máquina virtual de Java, 
+en principio es posible correr la herramienta en cualquier sistema operativo 
+que soporte Java.
+Se recomienda una distribución Linux de 64 bits, la herramienta ha sido 
+escrita y probada en Ubuntu 16.04, pero una distribución 
+basada en Debian (Ubuntu) o Red Hat (Fedora/CentOS) también es recomendada.
+Cualquier distribución con paquetería Debian o RPM deberían de poder instalar 
+los requerimientos de la herramienta y correrla.
+
+En cuanto a hardware, la variable más importante es la memoria RAM. 
+Los archivos de ventas (~1.2 GB) 
+y los archivos de precios de la competencia (~800 MB por semana / ~5 GB por seis semanas) 
+deben de caber en RAM.
+Spark es capaz de hacer cómputos sobre disco duro en lugar de RAM, pero la velocidad de procesamiento 
+sufrirá debido a la baja velocidad de acceso a datos en disco duro comparado con RAM;
+un SSD alivia unpoco este problema pero es mucho mejor dejar esos cálculos en RAM.
+Tomando en cuenta 6 semanas de datos de precios de la competencia y el archivo de ventas 
+se deben de tener ~6 GB de RAM para Spark. 
+Apache recomienda que Spark no supere el 75\% de RAM de la máquina, 
+esto da un resultado final de ~8 GB de RAM.
+En la práctica, esta cantidad de RAM es suficiente pero muy restrictiva, 
+se recomiendan más de 12 GB de RAM para 
+persistir más datos en memoria (mediante driver-memory de Spark) y ampliar el heap space de Java.
+
+Los datos que requiere la herramienta son tablas que pueden pesar hasta 2 GB cada una. 
+En la práctica una corrida de una semana puede ocupar en total 20 GB de capacidad
+(este número depende más de los datos de precios, ventas y artículos que del funcionamiento interno de la herramienta).
+
+El CPU es un tanto más flexible, velocidades de 2.0 GHz son suficientes, 
+el número de núcleos normalmente domina el tiempo de cómputo hasta 8 núcleos 
+(4 núcleos alcanzan un nivel de paralelización suficiente). 
+
+\begin{table}[htb]
+	\centering 
+	\begin{tabular}{| l | l | l |} 
+		\hline 
+		& Mínimo & Recomendado \\ \hline
+		RAM & 12 GB & 16 GB \\
+		Disco & 20 GB libres & 100 GB \\
+		Reloj CPU & 2.0 GHz & 3.0 GHz \\
+		Núcleos CPU & 4 núcleos/8 Hilos & 8 núcleos/16 Hilos \\ \hline
+	\end{tabular}
+\end{table}
+
+
+
+
+\subsection{Java}
+
+
+
+\subsubsection{Oracle Java}
+
+Para las distribuciones de Ubuntu 16.10, 16.04, 15.10, 14.04 y 12.04, así como Linux Mint 18, 17.x y 13
+se puede usar el PPA de webupd8team:
+\begin{verbatim}
+$ sudo add-apt-repository ppa:webupd8team/java
+$ sudo apt-get update 
+$ sudo apt-get install oracle-java8-installer
+\end{verbatim}
+Se tendrán que aceptar los términos y condiciones de Oracle para finalizar la instalación.
+
+Adicionalmente, oracle proporciona el .rpm de JDK 8 en su sitio web: \\
+\url{http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html} \\
+Después de bajar el .rpm apropiado para su arquitectura, este se puede instalar con yum:
+\begin{verbatim}
+$ sudo yum localinstall nombre_del_rmp.rpm
+\end{verbatim}
+o con zipper según sea el caso: 
+\begin{verbatim}
+$ zypper install nombre_del_rpm.rpm
+\end{verbatim}
+El comando java -version se puede utilizar para comprobar la versión que se ha instalado.
+
+
+
+\subsubsection{OpenJDK}
+
+Se puede instalar la versión de código abierto de Java para distribuciones basadas en Debian:
+\begin{verbatim}
+$ sudo apt-get install default-jre 
+$ sudo apt-get install default-jdk
+\end{verbatim}
+aquellas con paquetería yum:
+\begin{verbatim}
+$ sudo yum install java-1.8.0-openjdk-devel
+$ sudo yum install java-1.8.0-openjdk
+\end{verbatim}
+y finalmente aquellas con paquetería zypper: 
+\begin{verbatim}
+$ zypper in java-1_8_0-openjdk
+\end{verbatim}
+El comando java -version se puede utilizar para comprobar la versión que se ha instalado.
+
+
+
+
+
+\subsection{Scala}
+
+Ya que se utilizará Spark, se deben instalar los binarios de Scala (no desde sbt o IntelliJ),
+los binarios se pueden descargar de la siguiente liga: \\
+\url{https://downloads.lightbend.com/scala/2.11.8/scala-2.11.8.tgz} \\
+En caso de que esta liga haya expirado, se pueden encontrar instrucciones 
+para la descarga de dichos binarios aquí: \\
+\url{https://www.scala-lang.org/download/2.11.8.html}
+
+Una vez descargados los binarios, se descomprimen 
+y se coloca la carpeta scala-2.11.8 sobre /usr/local/ bajo el nombre de scala/.
+Esta es la costumbre para sistemas Linux, pero es posible colocársele en otro lado sin ningún problema, 
+se supondrá en este documento que Scala está colocado en /usr/local/scala.
+
+Se recomienda declarar la variable de entorno \$SCALA\_HOME y expandir el \$PATH 
+para los usuarios del sistema de la siguiente manera:
+\begin{verbatim}
+$ export SCALA_HOME=/usr/local/scala
+$ export PATH=$PATH:$SCALA_HOME/bin
+\end{verbatim}
+Declarese según sean los protocolos de su área de TI (.bashrc, /etc/environment, etc). 
+Se puede comprobar la instalación correcta de Scala al correr simplemente el comando scala en terminal, 
+en caso de no tener el \$SCALA\_HOME/bin sobre el \$PATH tendra que usar la ruta completa a \$SCALA\_HOME/bin/scala.
+
+
+
+\subsection{Spark}
+
+Spark se debe instalar desde sus binarios, los cuales se pueden descargar aquí: \\
+\url{http://spark.apache.org/downloads.html} \\
+Seleccione Spark 2.2.0 construido para Hadoop 2.7.0 en adelante.
+
+Una vez descargados los binarios, se descomprimen 
+y se coloca la carpeta spark-2.2.0-bin-hadoop2.7 sobre /usr/local/ bajo el nombre de spark/.
+Se supondrá en este documento que Spark está colocado en /usr/local/spark.
+Se debe remombrar /usr/local/spark/conf/slaves.template a /usr/local/spark/conf/slaves, 
+este es el archivo que le comunica a Spark 
+que máquinas tiene disponibles para trabajar en modo cluster; 
+en caso de no tener un cluster la unica máquina disponible es localhost.
+La configuración de Spark en cluster se cubrirá en la sección \ref{clusterconf}.
+
+Se recomienda declarar la variable de entorno \$SPARK\_HOME y expandir el \$PATH 
+para los usuarios del sistema de la siguiente manera:
+\begin{verbatim}
+$ export SPARK_HOME=/usr/local/scala
+$ export PATH=$PATH:$SPARK_HOME/bin
+\end{verbatim}
+Declarese según sean los protocolos de su área de TI (.bashrc, /etc/environment, etc). 
+Se puede comprobar la instalación correcta de Scala al correr simplemente el comando spark-shell en terminal, 
+en caso de no tener el \$SPARK\_HOME/bin sobre el \$PATH tendra que usar la ruta completa a \$SPARK\_HOME/bin/spark-shell.
+
+
+
+\subsection{Hadoop}
+
+Hadoop se utiliza en el caso de correr la herramienta sobre un cluster, 
+se puede instalar desde sus archivos binarios: \\ 
+\url{https://archive.apache.org/dist/hadoop/core/hadoop-2.7.3}
+Los archivos binarios se encuentran en el archivo comprimido hadoop-2.7.3.tar.gz.
+
+Una vez descargados los binarios, se descomprimen 
+y se coloca la carpeta hadoop-2.7.3 sobre /usr/local/ bajo el nombre de hadoop/.
+Se supondrá en este documento que Hadoop está colocado en /usr/local/hadoop.
+La configuración de Hadoop se cubrirá en \ref{clusterconf}.
+
+
+
+\subsection{Configuración de Cluster} \label{clusterconf}
+
+Esta sección detalla la configuración de un cluster de máquinas 
+que corren la herramienta sobre Spark y Hadoop. 
+Por concretitud, se supondrá que se tienen 4 máquinas distintas bajo la misma red, 
+cada una con IP fija y nombres de máquina Maq1, Maq2, Maq3 y Maq4. 
+Todas las máquinas deben de compartir el mismo nombre de usuario para manejar Spark+Hadoop,
+tradicionalmente se utiliza el nombre hduser, pero puede ser cualquier nombre.
+Se supondrá el nombre black para como nombre de usuario de este punto en adelante.
+
+El esquema de trabajo de Spark/Hadoop requiere una máquina maestra (o master), 
+la cual recibe instrucciones del usuario y coordina a las demás para trabajar juntas.
+A las máquinas de trabajo se les refiere como trabajadoras (workers) o esclavas (slaves); 
+la nomenclatura exacta depende de la fuente.
+En este documento se utilizará la nomenclatura de maestra/trabajadoras.
+
+La máquina maestra también puede ser esclava 
+y en esta se coleccionan los datos finales no paralelizados, 
+así que normalmente se escoge la máquina con mayor memoria RAM.
+En este documento se escogerá Maq1 como la maestra.
+
+En todas las máquinas se debe instalar Java, Scala, Spark y Hadoop. 
+En el caso de Scala, Spark y Hadoop, se recomienda automatizar 
+el copiado de cada carpeta de programa a /usr/local después de
+haber editado sus hojas de configuración de acuerdo a las instrucciones de esta sección.
+
+\subsubsection{Configuración SSH y de Hosts}
+
+Spark/Hadoop utiliza SSH para manejar las señales entre las máquinas, 
+así que se requiere instalar el cliente y el servidor SSH. 
+Las instrucciones para Debian, yum y zypper son las siguientes:
+\begin{verbatim}
+$ sudo apt-get install openssh-server openssh-client
+$ sudo yum install openssh-server openssh-clients
+$ sudo zypper install openSSH
+\end{verbatim}
+Se recomienda no utilizar el puerto 22 para ssh, 
+en dado caso se debe especificar el puerto por medio de la variable de entorno
+\$SPARK\_SSH\_OPTS en la máquina maestra, por ejemplo:
+\begin{verbatim}
+export SPARK_SSH_OPTS="-p NumeroDePuerto"
+\end{verbatim}
+
+Adicionalmente, se requiere que las máquinas tengan capacidad
+de iniciar sesiones SSH entre ellas por medio de llaves SSH. 
+Si las máquinas no tienen llaves SSH estas se pueden generar con el comando
+ssh-keygen, genere las llaves de acuerdo a los protocolos de su rama de Seguridad de la Información. 
+En este documento se supondrá que los pares de llaves (pública y privada) 
+se generaron en el directorio /home/black/.ssh con los nombres id\_rsa y id\_rsa.pub (respectivamente).
+
+Se necesitan añadir las IPs de las máquinas al archivo Hosts de cada máquina,
+por ejemplo el archivo /etc/hosts de Maq2 se puede ver así:
+\begin{verbatim}
+127.0.0.1	localhost
+127.0.1.1	Maq2
+IP1		Red1
+IP2		Red2
+IP2		Red3
+IP2		Red4
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+\end{verbatim}
+Donde IPX y RedX son la IP y nombre de red de la máquina MaqX, respectivamente.
+El nombre de red de la máquina maestra no debe coincidir con el nombre de máquina.
+
+Para copiar las llaves de una máquina a otra se puede utilizar el siguiente comando: 
+\begin{verbatim}
+$ ssh-copy-id black@RedX
+\end{verbatim} 
+Alternativamente, se pueden añadir los contenidos de cada llave pública en id\_rsa.pub 
+a una nueva línea del archivo authorized\_keys dentro de la carpeta /home/black/.ssh
+(este archivo guarda las llaves autorizadas para iniciar sesión por SSH de manera automática).
+Si el último no existe, se puede crear con un editor o con el comando touch.
+
+Si la configuración de llaves SSH se ha efectuado correctamente,
+el siguiente comando debería iniciar una sesión en MaqX desde cualquier otra máquina:
+\begin{verbatim}
+$ ssh black@RedX
+\end{verbatim}
+
+\subsubsection{Configuración de Spark Modo Cluster} 
+
+Dentro de la carpeta de instalación de Spark existe la carpeta conf/,
+la cual guarda todos los archivos de configuración de Spark. 
+Se deben de añadir los nombres de red (los aliases en /etc/hosts) 
+de todas las trabajadoras al archivo slaves de la carpeta de configuración:
+\begin{verbatim}
+# Nombres de Red en SPARK_HOME/conf/slaves
+# A Spark Worker will be started on each of the machines listed below.
+Red1
+Red2
+Red3
+Red4
+\end{verbatim}
+Este archivo se debe de editar en cada una de las máquinas del cluster.
+
+Para verificar la instalación, se pude correr el shell script 
+start-all.sh en la máquina maestra:
+\begin{verbatim}
+$ /usr/local/spark/sbin/start-all.sh
+\end{verbatim}
+Este script inicializa la máquina maestra junto con todas las trabajadoras
+e indicará si alguna máquina no se puede inicializar o esta desconectada de la red.
+Se recomienda crear un alias para este comando y para el script stop-all.sh:
+\begin{verbatim}
+$ alias start-spark=/usr/local/spark/sbin/start-all.sh
+$ alias stop-spark=/usr/local/spark/sbin/stop-all.sh
+\end{verbatim} 
+
+Para incializar una sesión de Spark en modo distribuido se debe especificar la máquina maestra en el comando spark-shell
+\begin{verbatim}
+$ spark-shell --master spark://Red1:7077
+\end{verbatim}
+El puerto 7077 es el puerto defecto para sesiones de Spark y este se puede configurar. 
+Dicha configuración esta fuera del alcance de este documento.
+
+\subsubsection{Configuración de Hadoop Modo Cluster} 
+
+La herramienta de precios es capaz de ocupar el Filesystem distribuido de Hadoop (HDFS) 
+para guardar y escribir archivos en un cluster.
+Dichos archivos son guardados por bloques en cada máquina del cluster, 
+se supondrá que estos bloques serán guardados dentro de algún subdirectorio de /app/hadoop 
+(Hadoop se encarga de decidir este subdirectorio).
+Se debe de crear el directorio que Hadoop utilizará para trabajar con los permisos correctos en cada máquina:
+\begin{verbatim}
+$ mkdir -p /app/hadoop/tmp
+$ chown black:black /app/hadoop
+$ chown black:black /app/hadoop/tmp
+\end{verbatim}
+Las últimas instrucciones las debe de correr un superusuario.
+
+La primera hoja de configuración a editar es dfs.include y se acostumbra colocarla
+dentro de /app/hadoop (esta ruta se puede configurar). 
+Esta hoja debe de tener los nombres de red de cada máquina del cluster:
+\begin{verbatim}
+Red1
+Red2
+Red3
+Red4
+\end{verbatim}
+Esta es la lista de máquinas que guardan los archivos del cluster.
+
+El resto de las hojas de configuración a editar de encuentran dentro
+de la carpeta de instalación de Hadoop, dentro de la subcarpeta etc/hadoop 
+y son en su mayorúa archivos XML.
+
+La hoja core-site.xml regula los datos referentes al ``Namenode'' del cluster,
+el cual se encarga de registrar donde están guardados los datos del HDFS en el cluster 
+y de guardar el arbol de directorios del mismo HDFS. 
+El Namenode puede ser la máquina maestra, como se muestra en la hoja siguiente:
+\begin{verbatim}
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- /usr/local/hadoop/etc/hadoop/core-site.xml -->
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+<property>
+  <name>hadoop.tmp.dir</name>
+  <value>/app/hadoop/tmp</value>
+  <description>A base for other temporary directories.</description>
+</property>
+
+<property>
+  <name>fs.default.name</name>
+  <value>hdfs://Red1:54310</value>
+  <description>The name of the default file system.  A URI whose
+  scheme and authority determine the FileSystem implementation.  The 
+  uri's scheme determines the config property (fs.SCHEME.impl) naming
+  the FileSystem implementation class.  The uri's authority is used to
+  determine the host, port, etc. for a filesystem.</description>
+</property>
+
+<property>
+  <name>fs.trash.interval</name>
+  <value>1440</value>
+  <description> Enables trash instead of immediate deletion, 
+  strongly recommended.</description>
+</property>
+
+</configuration>
+\end{verbatim}
+El atributo hadoop.tmp.dir especifica la ruta donde se guardan los archivos del HDFS.
+fs.default.name especifica la URI con la que se hace interfaz con HDFS (se acostumbra usar el puerto 54310).
+fs.trash.interval se incluye para habilitar la papelera del HDFS, se vacía cada 1440 segundos (24 horas) 
+y su inclusión previene que el comando rm de Hadoop borre permanentemente datos sin pasar antes por dicha papelera.
+
+La hoja hdfs-site.xml regula los datos referentes a los ``Datanodes'', 
+las máquinas del cluster que guardan los archivos del HDFS.
+En esencia, cada datanode es una máquina trabajadora para el HDFS. 
+Un ejemplo de esta hoja se presenta a continuación: 
+\begin{verbatim}
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- /usr/local/hadoop/etc/hadoop/hdfs-site.xml -->
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+<property>
+  <name>dfs.replication</name>
+  <value>2</value>
+  <description>Default block replication.
+  The actual number of replications can be specified when the file is created.
+  The default is used if replication is not specified in create time.
+  </description>
+</property>
+
+<property>
+  <name>dfs.permissions.supergroup</name>
+  <value>black</value>
+  <description>The name of the group of super-users.</description>
+</property>
+
+<property>
+  <name>dfs.hosts</name>
+  <value>/app/hadoop/dfs.include</value>
+  <description>Names a file that contains a list of hosts that are 
+  permitted to connect to the namenode. The full pathname of the file
+  must be specified. If the value is empty, all hosts are 
+  permitted.</description>
+</property>
+
+</configuration>
+
+\end{verbatim}
+dfs.replication regula la redundancia del guardado de archivos del HDFS;
+los archivos del HDFS se dividen en bloques y estos mismos bloques
+se pueden replicar en distintos datanodes. 
+En este caso cada bloque se guarda dos veces en el cluster, 
+esta redundancia permite al cluster continuar funcionando en
+el evento de que una máquina falle o se desconecte del cluster. 
+dfs.replication no debe de ser mayor al número de máquinas en el cluster.
+dfs.permissions.supergroup es el nombre el grupo de usuarios que pueden manipular los archivos del cluster
+con permisos de superusuario. 
+dfs.hosts es la ruta de dfs.include, el cual tiene la lista de máquinas 
+que se pueden conectar al namenode (la interfaz del HDFS) y fungir de trabajadoras. 
+
+La hoja mapred-site.xml regula datos referentes a las instrucciones que siguen el esquema MapReduce 
+y su reporteo (HDFS utiliza este esquema de trabajo). 
+En nuestro caso solamente hay que especificar el nombre de red de la máquina reporteadora y un puerto libre 
+(se acostumbra el 54311):  
+\begin{verbatim}
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- /usr/local/hadoop/etc/hadoop/mapred-site.xml -->
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+<property>
+  <name>mapred.job.tracker</name>
+  <value>Red1:54311</value>
+  <description>The host and port that the MapReduce job tracker runs
+  at.  If "local", then jobs are run in-process as a single map 
+  and reduce task.
+  </description>
+</property>
+
+</configuration>
+\end{verbatim}
+
+Las variables presentadas en este documento para las hojas de configuración XML de Hadoop 
+no son una lista exhaustiva. 
+Se pueden encontrar todos los valores configurables en las siguientes ligas:\\
+\url{https://hadoop.apache.org/docs/r2.7.2/hadoop-project-dist/hadoop-common/core-default.xml}\\
+\url{https://hadoop.apache.org/docs/r2.7.7/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml}\\ 
+\url{https://hadoop.apache.org/docs/r2.7.2/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml}
+
+Las únicas hojas que quedan de editar son ``masters'' y ``slaves.''
+La hoja de masters solo debe contener el nombre de la máquina maestra:
+\begin{verbatim}
+Red1
+\end{verbatim}
+La hoja de slaves contiene la lista de todas las trabajadoras: 
+\begin{verbatim}
+Red1
+Red2
+Red3
+Red4
+\end{verbatim}
+
+Las hojas de configuración se deben copiar en cada máquina que forma parte del cluster. 
+Una vez terminada la edición y el copiado de las dichas se puede inciar el HDFS desde la maestra:
+\begin{verbatim}
+$ /usr/local/hadoop/sbin/start-dfs.sh
+\end{verbatim}
+De nuevo se recomienda crear un alias para este script y otro alias para stop-dfs:
+\begin{verbatim}
+$ alias start-hdfs=/usr/local/hadoop/sbin/start-dfs.sh
+$ alias stop-hdfs=/usr/local/hadoop/sbin/stop-dfs.sh
+\end{verbatim}
+Antes de continuar trabajando con el cluster es necesario detenerlo. 
+
+El siguiente paso es formatear el HDFS para empezar su uso:
+\begin{verbatim}
+$ cd /usr/local/hadoop
+$ ./hdfs namenode -format
+\end{verbatim}
+El cluster no puede estar corriendo durante este proceso. 
+
+El HDFS debería de estar listo para su uso, se puede corroborar que 
+este funcionando correctamente con las siguientes operaciones: 
+\begin{verbatim}
+$ start-hdfs
+$ hadoop fs -ls -h / 
+$ hadoop fs -mkdir /prueba
+$ hadoop fs -ls -h / 
+\end{verbatim}
+Nótese que se ha utilizado el alias para el script del levantamiendo del cluster.
+El HDFS contiene casi todas las operaciones propias de un Filesystem común:
+\begin{verbatim}
+$ hadoop fs -ls -h /directorio/*
+$ hadoop fs -mkdir /dir1/dir2
+$ hadoop fs -rm -r /dir1
+$ hadoop fs -mv /dir/archivo1 /dir/archivo2
+\end{verbatim}
+Desde uno de los nodos es posible subir archivos al HDFS,
+\begin{verbatim}
+$ hadoop fs -put archivo_local /alguna_ruta/archivo_en_hdfs
+\end{verbatim}
+También es posible descargarlos 
+\begin{verbatim}
+$ hadoop fs -get /ruta/archivo_en_hdfs destino_local
+$ hadoop fs -getmerge /ruta/archivo_en_hdfs destino_local
+\end{verbatim}
+Estos dos comandos no son equivalentes.
+El comando get se utiliza para obtener archivos que se guardan en un solo bloque, 
+los archivos multibloques se obtienen por medio de \textit{getmerge}. 
+En la práctica \textit{getmerge} funciona para los dos tipos de archivos.
+Esta distinción se debe a que los archivos multibloques son guardados como un directorio 
+cuyos contenidos son los bloques (archivos .part distribuidos sobre los datanodes) del archivo total, 
+getmerge obtiene todos los bloques por medio de un solo comando. 
+Advertencia: no hay un orden específico para los bloques, Spark+HDFS no se debe utilizar 
+para guardar tablas donde el orden de los registros codifica información 
+(a menos de que se tomen precauciones para guardar estas tablas en un solo bloque).
+
+La herramienta de precios guarda las tablas de resultados y sus cabeceras de manera separada, 
+así que para extraer resultados de la herramienta de precios se utiliza getmerge:
+\begin{verbatim}
+$ hadoop fs -getmerge /ruta/resultados/archivo.csv.plainheader \
+/ruta/resultados/archivo.csv destino.csv
+\end{verbatim}
+Este comando concatenará las cabeceras con la tabla guardada en el archivo .plainheader.
+En general, archivo.csv.plainheader serán siempre las cabeceras de archivo.csv.
+Los archivos .sparkheader son utilizados internamente por la herramienta, estos guardan 
+metadatos detallados sobre la tabla en cuestión.
+
+
+
+\subsection{Instalación de la Herramienta}
+
+\subsubsection{Carpeta de Datos}
+
+Antes de correr la herramienta se debe de preparar alguna carpeta 
+donde se guarden los datos, a esta carpeta se le llamará \$CHDT\_PATH.
+En el equipo entregado al equipo de precios de Chedraui esta carpeta 
+se ha preparado aquí:\\
+/home/black/Documents/chedraui/\\
+Sobre esta carpeta deben de existir las carpetas inventarios/, ventas/, 
+preciosCompetencia/ y resultados/:
+\begin{verbatim}
+$ CHDT_PATH="/home/black/Documents/chedraui/"
+$ mkdir -p $CHDT_PATH
+$ mkdir $CHDT_PATH/inventarios
+$ mkdir $CHDT_PATH/ventas
+$ mkdir $CHDT_PATH/preciosCompetencia
+$ mkdir $CHDT_PATH/resultados
+\end{verbatim}
+En caso de estar en modo cluster, se debe usar hadoop -mkdir.
+La carpeta \$CHDT\_PATH contiene las subcarpetas de datos y los catálogos,
+un ejemplo de esta carpeta con sus archivos y subcarpetas se presentan a contiuación:
+\begin{Verbatim}[tabsize=4]
+$CHDT_PATH/
+	cat_skus.csv
+	cat_excepciones.csv 
+	... (todos los archivos de catalogos) 
+	cat_matriz.csv
+	inventarios/
+		Inven_15Ene17.csv
+		Inven_14Feb17.csv
+		... (todos los archivos de inventarios)
+		Inven_22Dic17.csv
+	ventas/ 
+		ventas201702.csv
+		ventas201703.csv
+		... (todos los archivos de ventas)
+		ventas201751.csv
+	preciosCompetencia/
+		nielsen201702.csv
+		nielsen201703.csv
+		otroproveedor201703.csv
+		... (todos los archivos de precios)
+		nielsen201750.csv
+	resultados/
+		... (la herramienta deposita resultados)
+\end{Verbatim}
+La preparación de los catálogos y hojas de datos se cubren en \ref{inputs}.
+
+\subsubsection{Carpeta de Trabajo de Spark}
+
+Junto con este documento, se debió de haber entregado la herramienta compilada,
+es un archivo .jar llamado herramienta-chedraui\_nVersion.jar, 
+donde nVersion contiene la versión de Scala con la fue compilado y la versión de la herramienta.
+
+Spark genera archivos auxiliares durante su ejecución, 
+así que se recomienda colocar el .jar en una carpeta donde solamente exista el jar. 
+El compilado no debe estar en una carpeta donde se encuentren los datos.
+Dentro de la misma carpeta se puede correr Spark con la herramienta:
+\begin{verbatim}
+$ start-spark # si es que Spark no ha sido inicializado
+$ spark-shell --jars herramienta-chedraui_2.11-1.0.jar \ 
+  --driver-memory 8g
+\end{verbatim}
+Driver memory se puede ajustar según el volumen de los datos, 
+con 6 semanas de datos de precios 8 GB es suficiente.
+Los detalles del uso de la herramienta se cubren 
+en la sección \ref{process}.
+
+
+
+\subsection{Herramientas Auxiliares}
+
+\subsubsection{LibreOffice} 
+
+LibreOffice Calc es un programa parecido a Excel, 
+para los fines de este documento se tratará como un programa
+que ayudará a transformar exceles a csv con separadores arbitrarios.
+El archivo de instalación se encuentra en la siguiente liga: \\ 
+\url{https://www.libreoffice.org/download/download/}\\
+Descargue el .deb o el .rpm según sea el caso.
+
+\subsubsection{MDB Tools} 
+
+Durante la preparación de datos es necesario extraer tablas 
+de archivos .accdb y .mdb. 
+MDB Tools permite la extracción de estas tablas a archivos de texto plano.
+
+MDB Tools forma parte de los repositorios de defecto de Ubuntu,
+\begin{verbatim}
+$ sudo apt-get install mdb-tools 
+\end{verbatim}
+También forma parte de EPEL para distribuciones basadas en Red Hat,
+a continuación se presenta una liga con instrucciones de instalación para cada distribución:\\
+\url{https://fedoraproject.org/wiki/EPEL}\\
+En cuanto a SUSE, es posible añadir el repositorio apropiado a su versión:
+\begin{verbatim}
+$ zypper addrepo $URL_REPOSITORIO
+$ zypper refresh
+$ zypper install mdbtools
+\end{verbatim}
+Para SUSE 12.3 la liga \$URL\_REPOSITORIO es:\\
+\url{https://download.opensuse.org/repositories/openSUSE:12.3/standard/openSUSE:12.3.repo}\\
+La liga exacta del repositorio se puede obtener del siguiente sitio:\\
+\url{https://software.opensuse.org/download.html?project=openSUSE\%3A12.3&package=mdbtools}
+
+
+
+\subsection{Resumen de Variables de Entorno}
+
+Durante esta sección se ha cubierto la instalación 
+de Java, Scala, Spark y Hadoop.
+Las instrucciones recomiendan o especifican declarar nuevas variables de entorno
+o modificar el \$PATH de los usuarios.  
+
+La instalación de Java coloca los archivos de programa sobre rutas distintas 
+según la distribución y versión del sistema operativo. 
+Se puede obtener la ruta apropiada con el siguiente comando:
+\begin{verbatim}
+$ $(dirname $(dirname $(readlink -f $(which javac))))
+\end{verbatim}
+Las rutas de instalación de Scala, Spark y Hadoop se pueden ajustar
+segun las necesidades de administración de la o las máquinas de trabajo.
+
+Para facilidad del lector se presenta una muestra de un archivo .bashrc, 
+suponiendo las rutas de instalación antes especificadas:
+\begin{verbatim}
+# Spark+Hadoop
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export HADOOP_HOME=/usr/local/hadoop
+export PATH=$PATH:/usr/local/scala/bin
+export PATH=$PATH:/usr/local/spark/bin
+export PATH=$PATH:/usr/local/hadoop/bin
+
+# Start scripts
+alias start-spark=/usr/local/spark/sbin/start-all.sh
+alias start-hdfs=/usr/local/hadoop/sbin/start-dfs.sh
+alias stop-spark=/usr/local/spark/sbin/stop-all.sh
+alias stop-hdfs=/usr/local/hadoop/sbin/stop-dfs.sh
+\end{verbatim}
+Este fragmento puede servir de punto de partida para colocar las declaraciones
+de variables de entorno para su caso específico.

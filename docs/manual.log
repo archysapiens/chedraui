@@ -1,0 +1,1115 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.12.12)  13 JAN 2021 18:08
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**manual.tex
+(./manual.tex
+LaTeX2e <2020-02-02> patch level 2
+L3 programming layer <2020-02-14>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+)
+\c@part=\count167
+\c@section=\count168
+\c@subsection=\count169
+\c@subsubsection=\count170
+\c@paragraph=\count171
+\c@subparagraph=\count172
+\c@figure=\count173
+\c@table=\count174
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
+)
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2020/02/14 3.40 The Babel package
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2020/02/14 3.40 Babel switching mechanism
+)
+
+! Package babel Error: Unknown option `spanish'. Either you misspelled it
+(babel)                or the language definition file spanish.ldf was not foun
+d.
+
+See the babel package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.542 \ProcessOptions*
+                      
+? 
+! Interruption.
+\GenericError  ...                                
+                                                  \endgroup 
+l.542 \ProcessOptions*
+                      
+? ^^X
+Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, E to edit your file,
+H for help, X to quit.
+? ^^X
+Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, E to edit your file,
+H for help, X to quit.
+? 
+Package babel Info: You haven't specified a language. I'll use 'nil'
+(babel)             as the main language. Reported on input line 572.
+(/usr/share/texlive/texmf-dist/tex/generic/babel/nil.ldf
+Language: nil 2020/02/14 3.40 Nil language
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2020/02/14 3.40 Babel common definitions
+\babel@savecnt=\count175
+\U@D=\dimen135
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count176
+)
+\l@nil=\language3
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/01/20 v2.17e AMS math features
+\@mathmargin=\skip49
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks14
+\ex@=\dimen136
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen137
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count177
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count178
+\leftroot@=\count179
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count180
+\DOTSCASE@=\count181
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box45
+\strutbox@=\box46
+\big@size=\dimen138
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count182
+\c@MaxMatrixCols=\count183
+\dotsspace@=\muskip16
+\c@parentequation=\count184
+\dspbrk@lvl=\count185
+\tag@help=\toks15
+\row@=\count186
+\column@=\count187
+\maxfields@=\count188
+\andhelp@=\toks16
+\eqnshift@=\dimen139
+\alignsep@=\dimen140
+\tagshift@=\dimen141
+\tagwidth@=\dimen142
+\totwidth@=\dimen143
+\lineht@=\dimen144
+\@envbody=\toks17
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks18
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks19
+\inpenc@posthook=\toks20
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/latin1.def
+File: latin1.def 2018/08/11 v1.3c Input encoding file
+))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks21
+)
+\lst@mode=\count189
+\lst@gtempboxa=\box47
+\lst@token=\toks22
+\lst@length=\count190
+\lst@currlwidth=\dimen145
+\lst@column=\count191
+\lst@pos=\count192
+\lst@lostspace=\dimen146
+\lst@width=\dimen147
+\lst@newlines=\count193
+\lst@lineno=\count194
+\lst@maxwidth=\dimen148
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
+\c@lstnumber=\count195
+\lst@skipnumbers=\count196
+\lst@framebox=\box48
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2019/09/10 1.8c listings configuration
+))
+Package: listings 2019/09/10 1.8c (Carsten Heinz)
+
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2020/01/13 v3.5 verbatim text (tvz,hv)
+\FV@CodeLineNo=\count197
+\FV@InFile=\read3
+\FV@TabBox=\box49
+\c@FancyVerbLine=\count198
+\FV@StepNumber=\count199
+\FV@OutFile=\write3
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen149
+\Gin@req@width=\dimen150
+)
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count266
+\float@exts=\toks23
+\float@box=\box50
+\@float@everytoks=\toks24
+\@floatcapt=\box51
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
+\LTleft=\skip52
+\LTright=\skip53
+\LTpre=\skip54
+\LTpost=\skip55
+\LTchunksize=\count267
+\LTcapwidth=\dimen151
+\LT@head=\box52
+\LT@firsthead=\box53
+\LT@foot=\box54
+\LT@lastfoot=\box55
+\LT@cols=\count268
+\LT@rows=\count269
+\c@LT@tables=\count270
+\c@LT@chunks=\count271
+\LT@p@ftn=\toks25
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2020/01/14 v7.00d Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2019/11/07 v1.0c TeX engine tests
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+)
+\@linkdim=\dimen152
+\Hy@linkcounter=\count272
+\Hy@pagecounter=\count273
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2020/01/14 v7.00d Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count274
+\pdfmajorversion=\count275
+Package hyperref Info: Hyper figures OFF on input line 4547.
+Package hyperref Info: Link nesting OFF on input line 4552.
+Package hyperref Info: Hyper index ON on input line 4555.
+Package hyperref Info: Plain pages OFF on input line 4562.
+Package hyperref Info: Backreferencing OFF on input line 4567.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4800.
+\c@Hy@tempcnt=\count276
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5159.
+\XeTeXLinkMargin=\dimen153
+
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count277
+\Field@Width=\dimen154
+\Fld@charsize=\dimen155
+Package hyperref Info: Hyper figures OFF on input line 6430.
+Package hyperref Info: Link nesting OFF on input line 6435.
+Package hyperref Info: Hyper index ON on input line 6438.
+Package hyperref Info: backreferencing OFF on input line 6445.
+Package hyperref Info: Link coloring OFF on input line 6450.
+Package hyperref Info: Link coloring with OCG OFF on input line 6455.
+Package hyperref Info: PDF/A mode OFF on input line 6460.
+LaTeX Info: Redefining \ref on input line 6500.
+LaTeX Info: Redefining \pageref on input line 6504.
+
+(/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty
+Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
+)
+\Hy@abspage=\count278
+\c@Item=\count279
+\c@Hfootnote=\count280
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2020/01/14 v7.00d Hyperref driver for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/atveryend/atveryend.sty
+Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+)
+\Fld@listcount=\count281
+\c@bookmark@seq@number=\count282
+
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip56
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 14.
+
+
+Package hyperref Warning: Option `bookmarks' has already been used,
+(hyperref)                setting the option has no effect on input line 14.
+
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count283
+\l__pdf_internal_box=\box56
+)
+No file manual.aux.
+\openout1 = `manual.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+\c@lstlisting=\count284
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count285
+\scratchdimen=\dimen156
+\scratchbox=\box57
+\nofMPsegments=\count286
+\nofMParguments=\count287
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count288
+\MPscratchDim=\dimen157
+\MPnumerator=\count289
+\makeMPintoPDFobject=\count290
+\everyMPtoPDFconversion=\toks27
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+\AtBeginShipoutBox=\box58
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2019/11/23 v1.2a Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+)
+Package hyperref Info: Link coloring ON on input line 19.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count291
+)
+LaTeX Info: Redefining \ref on input line 19.
+LaTeX Info: Redefining \pageref on input line 19.
+LaTeX Info: Redefining \nameref on input line 19.
+\@outlinefile=\write4
+\openout4 = `manual.out'.
+
+\tf@toc=\write5
+\openout5 = `manual.toc'.
+
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+\openout2 = `descripcion.aux'.
+
+ (./descripcion.tex
+Overfull \hbox (6.64001pt too wide) in paragraph at lines 8--12
+[]\T1/cmr/m/n/10 Las tablas de datos son extraidas del mismo equipo donde corre
+ la herramienta,
+ []
+
+
+LaTeX Warning: Reference `reqs' on page 2 undefined on input line 13.
+
+
+LaTeX Warning: Reference `inputs' on page 2 undefined on input line 14.
+
+
+LaTeX Warning: Reference `funcions' on page 2 undefined on input line 15.
+
+
+LaTeX Warning: Reference `outputs' on page 2 undefined on input line 16.
+
+
+LaTeX Warning: Reference `process' on page 2 undefined on input line 17.
+
+
+LaTeX Warning: Reference `reqs' on page 2 undefined on input line 23.
+
+<imagenes/diagDependencias.png, id=14, 648.9846pt x 429.2838pt>
+File: imagenes/diagDependencias.png Graphic file (type png)
+<use imagenes/diagDependencias.png>
+Package pdftex.def Info: imagenes/diagDependencias.png  used on input line 25.
+(pdftex.def)             Requested size: 227.14801pt x 150.25157pt.
+<imagenes/diagProceso.png, id=16, 644.1666pt x 429.2838pt>
+File: imagenes/diagProceso.png Graphic file (type png)
+<use imagenes/diagProceso.png>
+Package pdftex.def Info: imagenes/diagProceso.png  used on input line 37.
+(pdftex.def)             Requested size: 225.46169pt x 150.25157pt.
+[2
+
+ <./imagenes/diagDependencias.png>]
+Overfull \hbox (11.68143pt too wide) in paragraph at lines 69--75
+\T1/cmr/m/n/10 matriz de competencia a nivel Tienda/Depto/SubDepto. La matriz d
+e competencia
+ []
+
+
+Overfull \hbox (16.30992pt too wide) in paragraph at lines 69--75
+\T1/cmr/m/n/10 asocia Tiendas Chedraui a Tiendas de la competencia; cada tienda
+ de la competencia
+ []
+
+[3 <./imagenes/diagProceso.png>]
+Overfull \hbox (13.578pt too wide) in paragraph at lines 95--98
+\T1/cmr/m/n/10 Se obtiene el grupo de cada UPC de acuerdo al catálogo cat_grupo
+s, posteriormente
+ []
+
+
+Overfull \hbox (2.67014pt too wide) in paragraph at lines 102--104
+[]\T1/cmr/m/n/10 El precio sugerido inicial por UPC es el precio de la competen
+cia encontrado
+ []
+
+
+Overfull \hbox (1.00497pt too wide) in paragraph at lines 102--104
+\T1/cmr/m/n/10 en las Tiendas de la competencia especificados en la matriz de c
+ompetencia. 
+ []
+
+) [4]
+\openout2 = `requerimientos.aux'.
+
+ (./requerimientos.tex
+Overfull \hbox (0.4053pt too wide) in paragraph at lines 12--27
+\T1/cmr/m/n/10 Scala 2.12 y sobre OpenJDK 1.8 en lugar de Java 8. Sin embargo, 
+se recomiendan
+ []
+
+[5
+
+
+]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 9
+3.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+Overfull \hbox (28.659pt too wide) in paragraph at lines 100--103
+[][]$\T1/cmtt/m/n/10 http : / / www . oracle . com / technetwork / java / javas
+e / downloads / jdk8 -[] downloads -[]
+ []
+
+
+Overfull \hbox (0.24902pt too wide) in paragraph at lines 116--117
+\T1/cmr/m/n/10 Se puede instalar la versión de código abierto de Java para dist
+ribuciones basadas
+ []
+
+[6]
+Overfull \hbox (1.63757pt too wide) in paragraph at lines 145--149
+\T1/cmr/m/n/10 para sistemas Linux, pero es posible colocársele en otro lado si
+n ningún problema,
+ []
+
+
+LaTeX Warning: Reference `clusterconf' on page 7 undefined on input line 175.
+
+
+Overfull \hbox (11.93137pt too wide) in paragraph at lines 168--176
+\T1/cmr/m/n/10 spark-2.2.0-bin-hadoop2.7 sobre /usr/local/ bajo el nombre de sp
+ark/. Se supondrá
+ []
+
+
+Overfull \hbox (14.65292pt too wide) in paragraph at lines 168--176
+\T1/cmr/m/n/10 en este documento que Spark está colocado en /usr/local/spark. S
+e debe remombrar
+ []
+
+[7]
+Overfull \hbox (1.331pt too wide) in paragraph at lines 183--186
+\T1/cmr/m/n/10 sobre el $PATH tendra que usar la ruta completa a $SPARK_HOME/bi
+n/spark-
+ []
+
+
+Overfull \hbox (4.4148pt too wide) in paragraph at lines 191--195
+[][]$\T1/cmtt/m/n/10 https : / / archive . apache . org / dist / hadoop / core 
+/ hadoop -[] 2 . 7 . 3$[][] \T1/cmr/m/n/10 Los archivos
+ []
+
+
+LaTeX Warning: Reference `clusterconf' on page 8 undefined on input line 199.
+
+[8]
+Overfull \hbox (39.6283pt too wide) in paragraph at lines 246--252
+\T1/cmr/m/n/10 en el directorio /home/black/.ssh con los nombres id_rsa y id_rs
+a.pub (respectivamente). 
+ []
+
+
+Overfull \hbox (16.49176pt too wide) in paragraph at lines 270--272
+\T1/cmr/m/n/10 Donde IPX y RedX son la IP y nombre de red de la máquina MaqX, r
+espectivamente.
+ []
+
+[9]
+Overfull \hbox (22.41028pt too wide) in paragraph at lines 301--301
+[]\T1/cmtt/m/n/10 # A Spark Worker will be started on each of the machines list
+ed below.[] 
+ []
+
+[10]
+Overfull \hbox (11.91284pt too wide) in paragraph at lines 391--391
+[]  \T1/cmtt/m/n/10 <description>A base for other temporary directories.</descr
+iption>[] 
+ []
+
+
+Overfull \hbox (11.91284pt too wide) in paragraph at lines 391--391
+[]  \T1/cmtt/m/n/10 scheme and authority determine the FileSystem implementatio
+n.  The[] 
+ []
+
+
+Overfull \hbox (17.16156pt too wide) in paragraph at lines 391--391
+[]  \T1/cmtt/m/n/10 uri's scheme determines the config property (fs.SCHEME.impl
+) naming[] 
+ []
+
+
+Overfull \hbox (22.41028pt too wide) in paragraph at lines 391--391
+[]  \T1/cmtt/m/n/10 the FileSystem implementation class.  The uri's authority i
+s used to[] 
+ []
+
+[11]
+Overfull \hbox (9.88922pt too wide) in paragraph at lines 397--401
+[]\T1/cmr/m/n/10 La hoja hdfs-site.xml regula los datos referentes a los ``Data
+nodes'', las máquinas
+ []
+
+
+Overfull \hbox (64.40002pt too wide) in paragraph at lines 436--436
+[]  \T1/cmtt/m/n/10 The actual number of replications can be specified when the
+ file is created.[] 
+ []
+
+
+Overfull \hbox (17.16156pt too wide) in paragraph at lines 436--436
+[]  \T1/cmtt/m/n/10 The default is used if replication is not specified in crea
+te time.[] 
+ []
+
+
+Overfull \hbox (1.4154pt too wide) in paragraph at lines 436--436
+[]  \T1/cmtt/m/n/10 <description>The name of the group of super-users.</descrip
+tion>[] 
+ []
+
+
+Overfull \hbox (1.4154pt too wide) in paragraph at lines 436--436
+[]  \T1/cmtt/m/n/10 <description>Names a file that contains a list of hosts tha
+t are[] 
+ []
+
+
+Overfull \hbox (17.16156pt too wide) in paragraph at lines 436--436
+[]  \T1/cmtt/m/n/10 permitted to connect to the namenode. The full pathname of 
+the file[] 
+ []
+
+[12]
+Overfull \hbox (0.30823pt too wide) in paragraph at lines 449--453
+[]\T1/cmr/m/n/10 La hoja mapred-site.xml regula datos referentes a las instrucc
+iones que siguen
+ []
+
+
+Overfull \hbox (11.91284pt too wide) in paragraph at lines 472--472
+[]  \T1/cmtt/m/n/10 <description>The host and port that the MapReduce job track
+er runs[] 
+ []
+
+
+Overfull \hbox (34.40771pt too wide) in paragraph at lines 474--480
+[][]$\T1/cmtt/m/n/10 https : / / hadoop . apache . org / docs / r2 . 7 . 2 / ha
+doop -[] project -[] dist / hadoop -[] common /
+ []
+
+
+Overfull \hbox (23.91028pt too wide) in paragraph at lines 474--480
+[][]$\T1/cmtt/m/n/10 https : / / hadoop . apache . org / docs / r2 . 7 . 7 / ha
+doop -[] project -[] dist / hadoop -[] hdfs /
+ []
+
+
+Overfull \hbox (18.66156pt too wide) in paragraph at lines 474--480
+[][]$\T1/cmtt/m/n/10 https : / / hadoop . apache . org / docs / r2 . 7 . 2 / ha
+doop -[] mapreduce -[] client / hadoop -[]
+ []
+
+[13] [14]
+Overfull \hbox (45.34912pt too wide) in paragraph at lines 566--573
+\T1/cmr/m/n/10 Sobre esta carpeta deben de existir las carpetas inventarios/, v
+entas/, preciosCompetencia/
+ []
+
+[15]
+
+LaTeX Warning: Reference `inputs' on page 16 undefined on input line 609.
+
+
+Overfull \hbox (3.27606pt too wide) in paragraph at lines 613--616
+\T1/cmr/m/n/10 Junto con este documento, se debió de haber entregado la herrami
+enta compilada,
+ []
+
+
+LaTeX Warning: Reference `process' on page 16 undefined on input line 629.
+
+
+Overfull \hbox (6.05316pt too wide) in paragraph at lines 637--643
+\T1/cmr/m/n/10 LibreOffice Calc es un programa parecido a Excel, para los fines
+ de este documento
+ []
+
+[16]
+Overfull \hbox (1.4154pt too wide) in paragraph at lines 663--667
+[][]$\T1/cmtt/m/n/10 https : / / download . opensuse . org / repositories / ope
+nSUSE : 12 . 3 / standard /
+ []
+
+
+Overfull \hbox (1.4154pt too wide) in paragraph at lines 663--667
+[][]$\T1/cmtt/m/n/10 https : / / software . opensuse . org / download . html ? 
+project = openSUSE % 3A12 .
+ []
+
+[17]) [18]
+\openout2 = `entradas.aux'.
+
+ (./entradas.tex
+Overfull \hbox (4.69238pt too wide) in paragraph at lines 3--9
+\T1/cmr/m/n/10 plano separado por pipes (el caracter ``|'') y extensión csv, de
+ preferencia codificado
+ []
+
+[19
+
+
+] [20]
+Overfull \hbox (8.44147pt too wide) in paragraph at lines 142--145
+\T1/cmr/m/n/10 deberá ser formato numérico consistente con SQL, ya sea AAMMDD, 
+AAAMMDD
+ []
+
+
+Overfull \hbox (6.38422pt too wide) in paragraph at lines 164--167
+\T1/cmr/m/n/10 Catálogo por artículo de IVA e IEPS para calcular precios con im
+puestos añadidos.
+ []
+
+
+Overfull \hbox (1.02661pt too wide) in paragraph at lines 184--185
+\T1/cmr/m/n/10 Tabla de excepciones por artículo, las excepciones deben de tene
+r una descripción
+ []
+
+
+Overfull \hbox (0.22125pt too wide) in paragraph at lines 220--225
+\T1/cmr/m/n/10 La herramienta cuenta con funcionalidad de detección de promocio
+nes de manera
+ []
+
+
+Overfull \hbox (1.73941pt too wide) in paragraph at lines 220--225
+\T1/cmr/m/n/10 estadística. Por cada Subdepartamento es posible especificar baj
+o que porcentaje
+ []
+
+[21] [22]
+Overfull \hbox (8.63843pt too wide) in paragraph at lines 307--309
+[]\T1/cmr/m/n/10 El campo/columna EAN_UPC puede tener como nombre UPC, la herra
+mienta
+ []
+
+[23]
+Overfull \hbox (5.46997pt too wide) in paragraph at lines 377--380
+\T1/cmr/m/n/10 deben guardar con el siguiente nombre y dentro de la carpeta pre
+ciosCompetencia: 
+ []
+
+[24]
+<imagenes/conv1.png, id=195, 856.19875pt x 719.68875pt>
+File: imagenes/conv1.png Graphic file (type png)
+<use imagenes/conv1.png>
+Package pdftex.def Info: imagenes/conv1.png  used on input line 426.
+(pdftex.def)             Requested size: 344.99489pt x 227.62561pt.
+ [25 <./imagenes/conv1.png>]
+<imagenes/conv2.png, id=204, 599.23875pt x 224.84pt>
+File: imagenes/conv2.png Graphic file (type png)
+<use imagenes/conv2.png>
+Package pdftex.def Info: imagenes/conv2.png  used on input line 440.
+(pdftex.def)             Requested size: 345.0pt x 129.4501pt.
+
+Overfull \hbox (12.94403pt too wide) in paragraph at lines 445--447
+[]\T1/cmr/m/n/10 Surgirá una ventana en la cuál se puede especificar la codific
+ación (de preferencia
+ []
+
+<imagenes/conv3.png, id=205, 488.82625pt x 345.29pt>
+File: imagenes/conv3.png Graphic file (type png)
+<use imagenes/conv3.png>
+Package pdftex.def Info: imagenes/conv3.png  used on input line 449.
+(pdftex.def)             Requested size: 345.0pt x 243.69817pt.
+[26 <./imagenes/conv2.png> <./imagenes/conv3.png>]
+Overfull \hbox (61.23413pt too wide) in paragraph at lines 474--477
+\T1/cmr/m/n/10 tiene el archivo ``Inventario_22Dic17.accdb'' dentro de carpeta 
+/home/black/Documents/datos
+ []
+
+
+Overfull \hbox (7.8064pt too wide) in paragraph at lines 496--498
+[]\T1/cmr/m/n/10 La máquina provista por BlackTrust debe de tener un alias para
+ esta extracción
+ []
+
+) [27]
+\openout2 = `funciones.aux'.
+
+ (./funciones.tex
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2019/09/10 1.8c listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2019/09/10 1.8c listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
+File: lstlang3.sty 2019/09/10 1.8c listings language file
+)
+Overfull \hbox (7.63977pt too wide) in paragraph at lines 47--50
+[]\T1/cmr/m/n/10 Como su nombre lo indica, esta función lee los catálogos y lim
+pia la información
+ []
+
+[28
+
+
+] [29] [30]
+Overfull \hbox (1.83197pt too wide) in paragraph at lines 196--203
+\T1/cmr/m/n/10 rasgos utiliza los resultados de calcPrecios para sugerir precio
+s dado un inventario
+ []
+
+
+Overfull \hbox (1.21176pt too wide) in paragraph at lines 196--203
+\T1/cmr/m/n/10 y un archivo de ventas (este último es opcional). Adicionalmente
+, genera reportes
+ []
+
+[31] [32]
+Overfull \hbox (5.75134pt too wide) in paragraph at lines 292--299
+[]\T1/cmr/m/n/10 Esta función lista los UPCs presentes en las tablas de precios
+ de la competencia
+ []
+
+) [33]
+\openout2 = `salidas.aux'.
+
+ (./salidas.tex
+Underfull \hbox (badness 2096) in paragraph at lines 32--33
+[]\T1/cmr/m/n/10 Nombre del proveedor de los precios de
+ []
+
+
+Underfull \hbox (badness 6268) in paragraph at lines 35--36
+[]\T1/cmr/m/n/10 Precio mínimo del UPC en la tienda
+ []
+
+
+Underfull \hbox (badness 5388) in paragraph at lines 36--37
+[]\T1/cmr/m/n/10 Precio máximo del UPC en la tienda
+ []
+
+
+Overfull \hbox (5.30492pt too wide) in paragraph at lines 26--44
+ [] 
+ []
+
+[34
+
+
+]
+Underfull \hbox (badness 2744) in paragraph at lines 62--63
+[]\T1/cmr/m/n/10 Desviación estándar del precio del UPC
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--65
+[]\T1/cmr/m/n/10 Es la frecuencia de la moda
+ []
+
+
+Underfull \hbox (badness 2744) in paragraph at lines 67--68
+[]\T1/cmr/m/n/10 Desviación estándar del precio del UPC
+ []
+
+
+Underfull \hbox (badness 1057) in paragraph at lines 68--69
+[]\T1/cmr/m/n/10 Mediana del precio del UPC sobre todas
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--70
+[]\T1/cmr/m/n/10 Es la frecuencia de la moda
+ []
+
+[35]
+Underfull \hbox (badness 10000) in paragraph at lines 95--96
+[]\T1/cmr/m/n/10 Es la frecuencia de la moda
+ []
+
+
+Overfull \hbox (5.13829pt too wide) in paragraph at lines 87--99
+ [] 
+ []
+
+
+Underfull \hbox (badness 2096) in paragraph at lines 117--118
+[]\T1/cmr/m/n/10 Nombre del proveedor de los precios de
+ []
+
+
+Underfull \hbox (badness 7925) in paragraph at lines 118--119
+[]\T1/cmr/m/n/10 Es la semana más reciente donde se
+ []
+
+[36]
+Underfull \hbox (badness 2096) in paragraph at lines 152--153
+[]\T1/cmr/m/n/10 Nombre del proveedor de los precios de
+ []
+
+[37]
+Underfull \hbox (badness 2096) in paragraph at lines 185--186
+[]\T1/cmr/m/n/10 Nombre del proveedor de los precios de
+ []
+
+[38]
+Underfull \hbox (badness 2096) in paragraph at lines 225--226
+[]\T1/cmr/m/n/10 Nombre del proveedor de los precios de
+ []
+
+[39]
+Overfull \hbox (4.55353pt too wide) in paragraph at lines 244--246
+\T1/cmr/m/n/10 Contiene sugerencias de precios y los impactos con respecto al p
+recio de regulación
+ []
+
+
+Underfull \hbox (badness 1968) in paragraph at lines 262--263
+[]|\T1/cmr/m/n/10 Precio promedio de venta con impuestos
+ []
+
+
+Underfull \hbox (badness 2096) in paragraph at lines 270--271
+[]|\T1/cmr/m/n/10 Nombre del proveedor de los precios de
+ []
+
+
+Underfull \hbox (badness 1946) in paragraph at lines 280--281
+[]|\T1/cmr/m/n/10 Es el SKU del artículo que presenta la
+ []
+
+[40]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 1 on input line 300.
+
+
+Underfull \hbox (badness 1968) in paragraph at lines 325--326
+[]|\T1/cmr/m/n/10 Precio promedio de venta con impuestos
+ []
+
+
+Underfull \hbox (badness 2096) in paragraph at lines 333--334
+[]|\T1/cmr/m/n/10 Nombre del proveedor de los precios de
+ []
+
+
+Underfull \hbox (badness 2865) in paragraph at lines 341--342
+\T1/cmr/m/n/10 - PrecioPromedioTotal) para el SKU en
+ []
+
+
+Underfull \hbox (badness 1946) in paragraph at lines 343--344
+[]|\T1/cmr/m/n/10 Es el SKU del artículo que presenta la
+ []
+
+[41]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 2 on input line 363.
+
+[42]
+Underfull \hbox (badness 1946) in paragraph at lines 404--405
+[]\T1/cmr/m/n/10 Es el SKU del artículo que presenta la
+ []
+
+[43]
+Underfull \hbox (badness 2865) in paragraph at lines 438--439
+\T1/cmr/m/n/10 - PrecioPromedioTotal) para el SKU en
+ []
+
+[44]
+Underfull \hbox (badness 2512) in paragraph at lines 475--476
+[]\T1/cmr/m/n/10 es el porcentaje de artículos con precio
+ []
+
+
+Underfull \hbox (badness 2865) in paragraph at lines 477--478
+\T1/cmr/m/n/10 - PrecioPromedioTotal) para el SKU en
+ []
+
+
+Underfull \hbox (badness 1107) in paragraph at lines 498--499
+\T1/cmr/m/n/10 - PrecioPromedioTotal) para la tienda en
+ []
+
+[45]) [46]
+\openout2 = `procesos.aux'.
+
+ (./procesos.tex
+Overfull \hbox (5.98633pt too wide) in paragraph at lines 3--3
+[]\T1/cmr/bx/n/12 Estructura de Archivos y Carpetas para la Herramienta 
+ []
+
+
+Overfull \hbox (42.36838pt too wide) in paragraph at lines 11--19
+\T1/cmr/m/n/10 archivos de inventarios, ventas y precios de competencia respect
+ivamente. Adicionalmente,
+ []
+
+[47
+
+
+]
+Overfull \hbox (40.96744pt too wide) in paragraph at lines 59--60
+[]\T1/cmr/m/n/10 Construcción de tablas de precios de la competencia con la fun
+ción calcCompetencia. 
+ []
+
+
+Overfull \hbox (104.19952pt too wide) in paragraph at lines 65--69
+[]\T1/cmr/m/n/10 Por ejemplo, supóngase que los datos son colocados en la carpe
+ta /home/black/Documents/chedraui/
+ []
+
+
+Overfull \hbox (4.02588pt too wide) in paragraph at lines 65--69
+\T1/cmr/m/n/10 y se desea generar sugerencias de precios con datos de la semana
+ 201751 utilizando
+ []
+
+[48]
+Overfull \hbox (1.11359pt too wide) in paragraph at lines 144--148
+[]\T1/cmr/m/n/10 Junto con la herramienta, se ha incluido una colección de scri
+pts que permiten
+ []
+
+)
+Overfull \hbox (4.58496pt too wide) in paragraph at lines 149--28
+[]\T1/cmr/m/n/10 Los scripts son sc_listaCSV.bash, sc_extraeCSV.bash y sc_extra
+eTodo.bash.
+ []
+
+[49]
+
+Package longtable Warning: Table widths have changed. Rerun LaTeX.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 30.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 30.
+(./manual.aux (./descripcion.aux) (./requerimientos.aux) (./entradas.aux)
+(./funciones.aux) (./salidas.aux) (./procesos.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 30.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 30.
+
+
+Package rerunfilecheck Warning: File `manual.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `manual.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  F50CEA99DBDAF18086C46C0939DFA2C8;5274.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 30.
+ ) 
+Here is how much of TeX's memory you used:
+ 9227 strings out of 483183
+ 133082 string characters out of 5966291
+ 640496 words of memory out of 5000000
+ 23793 multiletter control sequences out of 15000+600000
+ 545152 words of font info for 51 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 34i,9n,46p,435b,1885s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/rho/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0800.600pk
+> </home/rho/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk>
+ </home/rho/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> 
+</home/rho/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0800.600pk> <
+/home/rho/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </
+home/rho/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </h
+ome/rho/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </ho
+me/rho/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </hom
+e/rho/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home
+/rho/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/
+rho/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/r
+ho/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on manual.pdf (49 pages, 490811 bytes).
+PDF statistics:
+ 1064 PDF objects out of 1200 (max. 8388607)
+ 512 compressed objects within 6 object streams
+ 262 named destinations out of 1000 (max. 500000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+

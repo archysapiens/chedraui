@@ -1,0 +1,504 @@
+\section{Datos de Entrada y su Preparación} \label{inputs}
+
+Los datos de entrada (inputs) de la herramienta se deben 
+presentar en texto plano separado por pipes (el caracter ``|'') y extensión csv,
+de preferencia codificado en UTF-8. 
+Estos datos consisten de diversos catálogos de Chedraui,
+tablas de ventas, tablas de inventarios y tablas de precios de la competencia 
+(por ejemplo Nielsen).
+
+Al final de esta sección se presentarán métodos para transformar
+tablas de Microsoft Excel (xls, xlsx), Microsoft Access (accdb) y Microsoft DataBase (mdb)
+a texto plano separado por pipes. 
+
+El listado de catálogos es como sigue:
+
+\begin{table}[htb]
+	\centering 
+	\begin{tabular}{| l | l |} 
+		\hline 
+		Archivo & Descripción \\ \hline
+		cat\_tiendas.csv & Tiendas \\
+		cat\_skus.csv & SKUs \\ 
+		cat\_impuestos.csv & Impuestos \\ 
+		cat\_matriz.csv & Matriz de competencia \\ 
+		cat\_promos.csv & Umbral de detección de promociones \\
+		cat\_margenes.csv & Márgenes objetivo por clase \\
+		cat\_deciles\_nacional.csv & Deciles nacionales \\
+		cat\_deciles.csv & Deciles por tienda \\
+		cat\_excepciones.csv & Excepciones \\
+		cat\_grupos.csv & Grupos \\ \hline
+	\end{tabular}
+\end{table}
+
+La otra fuente de información son los datos de ventas, precios e inventario. 
+Las ventas y precios se extraen de manera semanal, 
+el inventario se extrae en días determinados. 
+Se presentan estas fuentes en forma tabular:
+
+\begin{table}[htb]
+	\centering 
+	\begin{tabular}{| l | l | l |} 
+	\hline
+	Archivo Ejemplo & Descripción \\
+	\hline 		
+	ventas201704.csv & Ventas de Chedraui \\
+	nielsen201708.csv & Precios de la competencia \\
+	Inven\_03Ene18.csv & Inventario en un día dado \\ \hline
+	\end{tabular}
+\end{table}
+
+Nótese que la convención de nombres de los archivos de inventarios difiere del resto. 
+Para los inventarios se sigue la convención que utiliza Chedraui para nombrar las tablas de inventario. 
+
+
+\newpage
+
+
+\subsection{Catálogos}
+
+A continuación se describen las variables (campos) que contiene cada catálogo. 
+Es de suma importancia que los títulos de las variables se escriban tal y como se indica, 
+de lo contrario se generará un error y no se podrá leer el archivo.
+
+
+\subsubsection{Tiendas}
+
+La función de este catálogo es dar especificaciones de cada centro de Chedraui 
+de acuerdo a su identificador numérico.
+
+\begin{center}
+	\begin{tabular}{| l | l |} 
+		\hline 
+		Campo & Descripción \\
+		\hline
+	 	Tienda & Identificador numérico \\
+		Nombre\_tda & Nombre del centro \\
+		Formato & Formato del centro \\ 
+		Region & Identificador alfanumérico \\
+		Zona & Identificador alfanumérico \\
+		Tipo\_Tda & Tipo del centro \\
+		\hline
+	 \end{tabular}
+\end{center}
+
+
+
+\subsubsection{SKUs}
+
+La función de este catálogo es dar especificaciones de cada artículo de Chedraui
+de acuerdo a su SKU. 
+El código de barras (UPC) se extrae de este catálogo. 
+Este catálogo proviene de una extracción de información de la MARA. 
+
+\begin{center}
+	\begin{tabular}{| l | l |} 
+		\hline 
+		Campo & Descripción \\ 
+		\hline
+		SKU & Identificador numérico \\
+		UPC & Código de barras \\
+		Principal & Campo alfanumérico \\
+		Descripcion & Nombre del artículo \\
+		GrupoArticulos & Campo numérico \\
+		Estatus & Campo alfanumérico \\
+		Depto & Identificador numérico \\
+		DescripDepto & Nombre del departamento \\
+		SubDepto & Identificador numérico \\
+		DescripSubdepto & Nombre del subdepartamento \\
+		Clase & Identificador numérico \\
+		DescripClase & Nombre de la clase  \\
+		SubClase & Identificador numérico \\
+		DescripSubCl & Nombre de la subclase \\
+		Num\_Dpt & Campo numérico \\
+		\hline
+	 \end{tabular}
+\end{center}
+
+
+\newpage
+
+
+\subsubsection{Deciles Nacionales}
+
+Catálogo por artículo de deciles Nielsen nacionales.
+
+\begin{center}
+	\begin{tabular}{| l | l |} 
+		\hline 
+		Campo & Descripción \\ 
+		\hline
+		SKU & Identificador numérico \\
+		UPC & Código de barras \\
+		DecilNacional & Campo numérico, puede tener como prefijo ``D'' \\
+		\hline
+	 \end{tabular}
+\end{center}
+
+
+
+\subsubsection{Deciles por Tienda}
+
+Catálogo por artículo de deciles por tienda Chedraui. 
+El formato de las fechas deberá ser formato numérico consistente con SQL, ya sea 
+AAMMDD, AAAMMDD o AAAAMMDD (por ejemplo 170321, 2170321, o 20170321).
+
+\begin{center}
+	\begin{tabular}{| l | l |} 
+		\hline 
+		Campo & Descripción \\ 
+		\hline
+		InicioVigencia & Fecha en formato numérico SQL \\
+		FinVigencia & Fecha en formato numérico SQL \\
+		Tienda & Identificador numérico \\
+		SKU & Identificador numérico \\
+		Decil & Campo numérico \\
+		\hline
+	 \end{tabular}
+\end{center}
+
+
+
+\subsubsection{Impuestos}
+
+Catálogo por artículo de IVA e IEPS para calcular precios con impuestos añadidos.
+El valor numérico deberá ser el porcentaje de impuestos por un factor de 10. 
+Por ejemplo, 16\% de IVA deberá tener un valor de 160.00. 
+
+\begin{center}
+	\begin{tabular}{| l | l |} 
+		\hline 
+		Campo & Descripción \\ 
+		\hline
+		SKU & Identificador numérico \\
+		IVA & Campo numérico \\
+		IEPS & Campo numérico \\
+		\hline
+	 \end{tabular}
+\end{center}
+
+
+
+\subsubsection{Excepciones}
+
+Tabla de excepciones por artículo, las excepciones deben de tener una descripción no vacía.
+
+\begin{center}
+	\begin{tabular}{| l | l |} 
+		\hline 
+		Campo & Descripción \\ 
+		\hline
+		SKU & Identificador numérico \\
+		Excepcion & Campo alfanumérico, no puede ser vacío \\
+		\hline
+	 \end{tabular}
+\end{center}
+
+
+
+\subsubsection{Grupos de Artículos}
+
+Tabla de grupos por artículo, cada grupo debe ser identificado por un campo numérico.
+
+\begin{center}
+	\begin{tabular}{| l | l |} 
+		\hline 
+		Campo & Descripción \\ 
+		\hline
+		SKU & Identificador numérico \\
+		GrupoArticulo & Campo numérico \\
+		\hline
+	 \end{tabular}
+\end{center}
+
+
+
+
+
+\subsubsection{Umbrales de Detección de Promociones}
+
+La herramienta cuenta con funcionalidad de detección de promociones
+de manera estadística. 
+Por cada Subdepartamento es posible especificar bajo que porcentaje de
+desviación de precio se considera un precio como promocional.  
+Por ejemplo un porcentaje del 12\% simplemente se representará como 12 en esta tabla.
+
+\begin{center}
+	\begin{tabular}{| l | l |} 
+		\hline 
+		Campo & Descripción \\ 
+		\hline
+		Depto & Identificador numérico \\
+		SubDepto & Identificador numérico \\
+		CambioPromocion & Porcentaje, campo numérico \\
+		\hline
+	 \end{tabular}
+\end{center}
+
+
+
+\subsubsection{Márgenes Objetivo por Clase}
+
+Margen objetivo de cada clase con el fin de regulación de precios.
+Por el momento, este campo no se utiliza y se puede dar un catálogo vacío,
+solamente con columnas.
+
+\begin{center}
+	\begin{tabular}{| l | l |} 
+		\hline 
+		Campo & Descripción \\ 
+		\hline
+		Depto & Identificador numérico \\
+		SubDepto & Identificador numérico \\
+		Clase & Identificador numérico \\
+		MargenObjetivo & Porcentaje, campo numérico \\
+		\hline
+	 \end{tabular}
+\end{center}
+
+
+
+\subsubsection{Matriz de Competencia}
+
+Tabla de tiendas junto con su competencia. 
+Es posible asignar varias tiendas de competencia a un centro Chedraui,
+la columna Prioridad asigna un nivel de importancia a cada tienda en caso de que se encuentre
+más de un precio en las tiendas de competencia.
+La herramienta tomará el primer precio no vacío de prioridad más alta en la matriz de competencia. 
+Prioridad 1 es el valor más alto, seguido de 2, 3, etc.  
+
+\begin{center}
+	\begin{tabular}{| l | l |} 
+		\hline 
+		Campo & Descripción \\ 
+		\hline
+		Tienda & Identificador numérico \\
+		Prioridad & Campo numérico menor a 100 \\
+		TiendaCompetencia & Identificador numérico \\
+		FuenteCompetencia & Campo alfanumérico \\
+		CadenaCompetencia & Campo alfanumérico \\
+		\hline
+	 \end{tabular}
+\end{center}
+
+
+\newpage
+
+
+\subsection{Datos Periódicos}
+
+En esta sección nos enfocaremos en la parte de los datos, para cada archivo se indica qué variables se deben tener como mínimo, es decir, cada archivo puede tener más columnas de las indicadas, pero al menos debe tener las que se indican en cada caso. Al igual que con los catálogos, es necesario que los nombres de las variables se escriban tal cual aparecen en la descripción de cada archivo.
+
+
+
+\subsubsection{Ventas de Chedraui}
+
+Estos archivos contienen los datos de ventas semanales de Chedraui. 
+El nombre del archivo debe seguir el siguiente formato: 
+
+\textbf{ventas<AñoCompleto><SemanaDosDigitos>.csv}
+
+
+Por ejemplo, las ventas de la semana 2 del año 2018 
+se deben guardar con el siguiente nombre y dentro de la carpeta ventas: 
+
+\textbf{ventas201802.csv}
+
+El campo/columna EAN\_UPC puede tener como nombre UPC, 
+la herramienta es capaz de detectar esta columna con cualquiera de estos dos nombres.
+
+\begin{center}
+	\begin{tabular}{| l | l |} 
+		\hline 
+		Campo & Descripción \\
+		\hline
+		SKU & Identificador numérico \\
+		EAN\_UPC & Código de barras \\
+		Depto & Identificador numérico \\
+		SubDepto & Identificador numérico \\
+		Clase & Identificador numérico \\
+		SubClase & Identificador numérico \\
+		Semana & Campo numérico \\
+		Tienda & Identificador numérico \\
+		VentaUni & Campo numérico \\
+		VentaPesos & Campo numérico \\
+		VentaCosto & Campo numérico \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\newpage
+
+\subsubsection{Inventarios}
+
+Estos archivos contienen los inventarios de Chedraui a nivel día y centro. 
+El nombre del archivo debe seguir el siguiente formato: 
+
+\textbf{Inven\_<Día><NombreMes><AñoDosDigitos>.csv}
+
+El nombre del mes puede tomar los siguientes valores, 
+aunque la herramienta es capaz de aceptar estos nombres en inglés: 
+
+Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic.
+
+Por ejemplo, el inventario del día 1 de Febrero del año 2018 
+se debe guardar con el siguiente nombre y dentro de la carpeta inventarios: 
+
+\textbf{Inven\_01Feb18.csv}
+
+Nótese que el nombre de este archivo es consistente con la convención
+que toma Chedraui en su extracción de inventarios a archivos Access.
+Los campos también son idénticos a dicha extracción. 
+
+\begin{center}
+	\begin{tabular}{| l | l |} 
+		\hline 
+		Campo & Descripción \\
+		\hline
+		SKU & Identificador numérico \\
+		FechaInven & Campo de fecha \\
+		Tienda & Identificador numérico \\
+		InvFinUni & Campo numérico \\
+		InvFinVta & Campo numérico \\
+		InvFinCto & Campo numérico \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+
+\subsubsection{Precios de la Competencia}
+
+Estos archivos contienen los datos de precios semanales de la competencia de Chedraui. 
+El nombre del archivo debe seguir el siguiente formato: 
+
+\textbf{<Proveedor><AñoCompleto><SemanaDosDigitos>.csv}
+
+Donde el nombre del proveedor esta an minúsculas, sin acentos ni espacios. 
+Por ejemplo, los precios de la semana 2 del año 2018 reportados por Nielsen
+se deben guardar con el siguiente nombre y dentro de la carpeta preciosCompetencia: 
+
+\textbf{nielsen201802.csv}
+
+Las columnas de los precios de la competencia pueden tomar dos nombres, 
+un conjunto de nombres genéricos o los nombres que toma Nielsen. 
+Cualquiera de los dos nombres para las columnas es válido.
+
+\begin{center}
+	\begin{tabular}{| l | l |} 
+		\hline 
+		Campo & Descripción \\
+		\hline
+		shop (o Tienda) & Identificador numérico \\
+		barcode (o UPC) & Identificador numérico \\
+		pr (o Precio) & Campo numérico \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+\newpage
+
+
+\subsection{Conversión de archivos a formato csv}
+
+Los archivos en excel, mdb, access, etc. deben convertirse a '.csv' y el separador que se debe utilizar es el pipe '|'. 
+A continuación se describe el procedimiento para realizar la conversión.
+
+
+
+\subsubsection{Excel a csv} 
+
+La máquina de trabajo provista por BlackTrust debe de tener instalada la
+herramienta LibreOffice Calc junto con el sistema operativo Ubuntu. 
+LibreOffice Calc es extremadamente parecido a Excel, 
+puede leer archivos de Excel y tiene una funcionalidad para transformar hojas de cálculo texto plano.
+
+Primero se debe de abrir el archivo de Excel con LibreOffice. 
+Esto se puede hacer navegando al archivo, 
+luego click derecho, después ``Abrir con'' y seleccionar LibreOffice Calc.
+
+El segundo paso consiste en ir al menú superior Archivo -> Guardar Como. 
+Se escribe el nombre del archivo deseado sin extensión y 
+en la parte inferior del menú se selecciona ``Archivo CSV'' como lo indica la figura. 
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth, height=8cm]{conv1}
+	\centering
+\end{figure}
+
+
+\newpage
+
+
+Dependiendo de la configuración de la máquina, 
+LibreOffice Calc pedirá una confirmación para cambiar el formato del archivo,
+se le indica a LibreOffice Calc que se desea proceder con formato CSV. 
+
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{conv2}
+	\centering
+\end{figure}
+
+
+Surgirá una ventana en la cuál se puede especificar la codificación (de preferencia UTF-8) 
+y el separador. El separador debe ser pipe (el caracter ``|'') como lo indica la imagen.  
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{conv3}
+	\centering
+\end{figure}
+
+
+Esto concluye el proceso de transformación Excel a csv. 
+Nótese que este proceso solamente guardará la hoja que esta seleccionada en ese momento.
+
+
+
+\subsubsection{Access/MDB a csv}
+
+El procedimiento para transformar archivos Access a csv es idéntico al mismo para MDB a csv.
+Se debe utilizar la terminal (consola) para este proceso. 
+Por convención, cualquier línea que empiece con \$ es un comando introducido en la terminal. 
+Una línea terminada por \\ indica que la línea en cuestión continua en la siguiente
+y se ha partido para un mejor despliegue en este documento.
+Se pueden autocompletar comandos y nombres de archivos con la tecla de tabular (tab). 
+
+La máquina de trabajo provista por BlackTrust debe de tener instalada la
+herramienta mdb-tools junto con el sistema operativo Ubuntu. 
+En caso de no ser así, se puede abrir una terminal para introducir el siguiente comando: 
+\begin{verbatim}
+$ sudo apt-get install mdb-tools 
+\end{verbatim}
+La mejor manera de explicar este proceso es con un ejemplo. 
+Supóngase que se tiene el archivo ``Inventario\_22Dic17.accdb'' dentro de carpeta 
+/home/black/Documents/datos y que se desea extraer la tabla de inventarios de ella. 
+
+Primero se le pide a la máquina navegar a la carpeta deseada, 
+\begin{verbatim}
+$ cd /home/black/Documents/datos 
+\end{verbatim}
+Listado de tablas en el archivo, mdb-tables es el comando que permite conocer las tablas,
+\begin{verbatim}
+$ mdb-tables Inventario_22Dic17.accdb 
+Inven_22Dic17
+\end{verbatim}
+Extracción de la tabla con separador pipe a un archivo csv,
+\begin{verbatim}
+$ mdb-export -d "|" -R "\n" -X "\\" Inventario_22Dic17.accdb \ 
+	Inven_22Dic17 > Inven_22Dic17.csv
+\end{verbatim}
+Este comando quiere decir 
+``Extrae del archivo Inventario\_22Dic17.accdb la tabla Inven\_22Dic17 y guárdala en Inven\_22Dic17.csv, 
+usa como separador pipe y fin de línea reconocida por Linux.''
+
+La máquina provista por BlackTrust debe de tener un alias para esta extracción llamado mdb-export2, 
+el cuál permite omitir las opciones, 
+\begin{verbatim}
+$ mdb-export2 \ 
+	Inventario_22Dic17.accdb Inven_22Dic17 > Inven_22Dic17.csv 
+\end{verbatim}
+Este comando es equivalente al anterior. 
+Una vez terminado el proceso debería de existir el archivo deseado, 
+esto se puede corroborar con el comando ls o directamente en el navegador de archivos.
